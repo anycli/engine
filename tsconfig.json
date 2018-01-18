@@ -1,7 +1,6 @@
 {
   "compilerOptions": {
     "declaration": true,
-    "forceConsistentCasingInFileNames": true,
     "importHelpers": true,
     "module": "commonjs",
     "noUnusedLocals": true,
@@ -9,6 +8,7 @@
     "outDir": "./lib",
     "rootDir": "./src",
     "strict": true,
+    "strictFunctionTypes": false,
     "target": "es2017"
   },
   "include": [

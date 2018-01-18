@@ -6,7 +6,8 @@
   "bugs": "https://github.com/dxcli/engine/issues",
   "dependencies": {
     "@dxcli/config": "^0.1.3",
-    "@dxcli/loader": "^0.0.0"
+    "@dxcli/loader": "^0.0.0",
+    "rxjs": "^5.5.6"
   },
   "devDependencies": {
     "@dxcli/dev": "^1.1.3",
@@ -14,6 +15,7 @@
     "@dxcli/dev-test": "^0.2.1",
     "@dxcli/dev-tslint": "^0.0.15",
     "@types/node": "^9.3.0",
+    "@types/read-pkg-up": "^3.0.0",
     "eslint": "^4.15.0",
     "eslint-config-dxcli": "^1.1.4",
     "husky": "^0.14.3",
@@ -50,7 +52,7 @@
     "dxcli"
   ],
   "license": "MIT",
-  "main": "lib/index.js",
+  "main": "lib/cli.js",
   "repository": "dxcli/engine",
   "scripts": {
     "commitmsg": "dxcli-dev-commitmsg",
@@ -59,5 +61,5 @@
     "prepare": "rm -rf lib && tsc",
     "test": "dxcli-dev test"
   },
-  "types": "lib/index.d.ts"
+  "types": "lib/cli.d.ts"
 }
