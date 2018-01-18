@@ -140,6 +140,17 @@
     lodash "^4.17.4"
     read-pkg-up "^3.0.0"
 
+"@dxcli/config@^0.1.5":
+  version "0.1.5"
+  resolved "https://registry.yarnpkg.com/@dxcli/config/-/config-0.1.5.tgz#00d27bf827c9bf903fa0ea67af08e4ad592104a7"
+  dependencies:
+    cli-ux "^2.0.21"
+    debug "^3.1.0"
+    fs-extra "^5.0.0"
+    load-json-file "^4.0.0"
+    lodash "^4.17.4"
+    read-pkg-up "^3.0.0"
+
 "@dxcli/dev-commitmsg@^0.0.3":
   version "0.0.3"
   resolved "https://registry.yarnpkg.com/@dxcli/dev-commitmsg/-/dev-commitmsg-0.0.3.tgz#8941971c9778b675dd14c407c1123b8bef397757"
@@ -203,12 +214,12 @@
     read-pkg-up "^3.0.0"
     supports-color "^5.1.0"
 
-"@dxcli/loader@^0.0.0":
-  version "0.0.0"
-  resolved "https://registry.yarnpkg.com/@dxcli/loader/-/loader-0.0.0.tgz#506fabadbbd6bd6f0e2027d2ec8f61f856f21ec7"
+"@dxcli/loader@0.0.1":
+  version "0.0.1"
+  resolved "https://registry.yarnpkg.com/@dxcli/loader/-/loader-0.0.1.tgz#1ecf8feac87429b7c1318e5b33bc6f0fcbb8093b"
   dependencies:
     "@dxcli/command" "^0.1.0"
-    "@dxcli/config" "^0.1.3"
+    "@dxcli/config" "^0.1.5"
     "@dxcli/manifest-file" "^0.0.0"
     "@dxcli/parser" "^0.0.2"
     "@heroku-cli/color" "^1.1.1"
