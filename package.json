@@ -6,7 +6,7 @@
   "bugs": "https://github.com/dxcli/engine/issues",
   "dependencies": {
     "@dxcli/config": "^0.1.3",
-    "@dxcli/loader": "^0.0.0"
+    "@dxcli/loader": "^0.0.1"
   },
   "devDependencies": {
     "@dxcli/dev": "^1.1.3",
