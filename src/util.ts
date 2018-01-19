@@ -1,4 +1,4 @@
-interface IESModule<T> {
+export interface IESModule<T> {
   __esModule: true
   default: T
 }

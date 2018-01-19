@@ -1,12 +1,15 @@
-import {ICLIConfig, IEngine, IPlugin, ITopic} from '@dxcli/config'
-import {ICachedCommand, load, Plugin} from '@dxcli/loader'
+import {Command} from '@dxcli/command'
+import {ICachedCommand, ICommandOptions, IConfig, IEngine, ITopic} from '@dxcli/config'
+import {load, Plugin} from '@dxcli/loader'
 import cli from 'cli-ux'
-import * as Rx from 'rxjs/Rx'
+import * as Rx from 'rxjs'
 
 import {undefault} from './util'
 
-export default class Engine implements IEngine {
-  public config: ICLIConfig
+const parentModule = module.parent && module.parent.parent && module.parent.parent.filename
+
+export default class Engine extends Command implements IEngine {
+  public config: IConfig & {engine: IEngine}
   private _plugins: Plugin[]
   private _topics: ITopic[]
   private _commands: ICachedCommand[]
@@ -18,17 +21,13 @@ export default class Engine implements IEngine {
   get rootTopics(): ITopic[] { return this._topics.filter(t => !t.name.includes(':')) }
   get rootCommands(): ICachedCommand[] { return this.commands.filter(c => !c.id.includes(':')) }
 
-  async init(config: ICLIConfig) {
-    this.config = config
-    const plugins$ = this.fetchPlugins(config.pjson.plugins)
-    const [plugins, commands, topics] = await Rx.Observable.forkJoin(
-      plugins$.reduce((arr, plugin) => arr.concat(...[plugin]), []),
-      plugins$.reduce((arr, plugin) => arr.concat(...plugin.commands), [] as ICachedCommand[]),
-      plugins$.reduce((arr, plugin) => arr.concat(...plugin.topics), [] as ITopic[]),
-    ).toPromise()
-    this._plugins = plugins
-    this._commands = commands
-    this._topics = topics
+  async run() {
+    const id = this.argv[0]
+    await this.runHook('init', {id})
+    const cachedCommand = this.config.engine.findCommand(id)
+    if (!cachedCommand) return this.commandNotFound(id)
+    const command = await cachedCommand.load()
+    await command.run(this.argv.slice(1), {config: this.config})
   }
 
   findCommand(id: string, must: true): ICachedCommand
@@ -53,29 +52,28 @@ export default class Engine implements IEngine {
     .mergeMap(async hook => {
       try {
         const m = await undefault(require(hook))
-        const result = await m(opts)
-        if (result && result.exit) {
-          // exit with code if it returns an object like
-          // {exit: 1}
-          cli.exit(result.exit)
-        }
+        await m({...opts as any || {}, config: this.config})
       } catch (err) {
-        cli.warn(err)
+        if (err.code === 'EEXIT') throw err
+        cli.warn(err, ['hook', event, hook])
       }
     })
     .toPromise()
   }
 
-  private fetchPlugins(plugins: string | string[] | undefined): Rx.Observable<Plugin> {
-    if (!plugins) return Rx.Observable.empty()
-    let plugins$: Rx.Observable<Plugin>
-    if (typeof plugins === 'string') {
-      plugins$ = undefault(require(plugins))(this.config)
-    } else {
-      plugins$ = Rx.Observable.from(plugins)
-    }
-    return plugins$.expand(p => p.fetch
-    .expand(p => this.subplugins(p))
-    .share()
+  protected async init(argv: string[], opts: ICommandOptions = {}) {
+    this.argv = argv
+    const results = await load({root: opts.root || parentModule!, type: 'core'})
+    results.config.engine = this
+    this.config = results.config as any
+    cli.config.errlog = this.config.errlog
+    this._plugins = results.plugins
+    this._commands = results.commands
+    this._topics = results.topics
+  }
+
+  protected async commandNotFound(id: string) {
+    await this.runHook('command_not_found', {id})
+    throw new Error(`command not found: ${id}`)
   }
 }
