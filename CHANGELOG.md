@@ -1,3 +1,11 @@
+<a name="0.1.3"></a>
+## [0.1.3](https://github.com/dxcli/engine/compare/ba926909c98b81c3b41d53e75383a3b1072a4358...v0.1.3) (2018-01-20)
+
+
+### Bug Fixes
+
+* updated cli-ux ([ae8e806](https://github.com/dxcli/engine/commit/ae8e806))
+
 <a name="0.1.2"></a>
 ## [0.1.2](https://github.com/dxcli/engine/compare/15f0fc03d6423bdaae90136e071ad22a93e14b63...v0.1.2) (2018-01-20)
 
