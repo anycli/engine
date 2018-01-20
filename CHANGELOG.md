@@ -1,3 +1,11 @@
+<a name="0.1.4"></a>
+## [0.1.4](https://github.com/dxcli/engine/compare/ae8e8064f4a821fc66ed6df8b9a9327f0751a43a...v0.1.4) (2018-01-20)
+
+
+### Bug Fixes
+
+* updated loader ([7f61334](https://github.com/dxcli/engine/commit/7f61334))
+
 <a name="0.1.3"></a>
 ## [0.1.3](https://github.com/dxcli/engine/compare/ba926909c98b81c3b41d53e75383a3b1072a4358...v0.1.3) (2018-01-20)
 
