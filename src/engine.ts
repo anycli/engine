@@ -1,7 +1,6 @@
 import {ICachedCommand, ICLIConfig, IEngine, ITopic} from '@dxcli/config'
 import {load, Plugin} from '@dxcli/loader'
 import cli from 'cli-ux'
-import * as Rx from 'rxjs'
 
 import {undefault} from './util'
 
@@ -10,6 +9,8 @@ export default class Engine implements IEngine {
   private _plugins: Plugin[]
   private _topics: ITopic[]
   private _commands: ICachedCommand[]
+  private _hooks: {[k: string]: string[]}
+  private debug: any
 
   get plugins(): Plugin[] { return this._plugins }
   get topics(): ITopic[] { return this._topics }
@@ -21,10 +22,12 @@ export default class Engine implements IEngine {
   async load(root: string) {
     const results = await load({root, type: 'core'})
     results.config.engine = this
+    this.debug = require('debug')(['@dxcli/engine', results.config.name].join(':'))
     this.config = results.config as any
     this._plugins = results.plugins
     this._commands = results.commands
     this._topics = results.topics
+    this._hooks = results.hooks
   }
 
   findCommand(id: string, must: true): ICachedCommand
@@ -43,18 +46,18 @@ export default class Engine implements IEngine {
     return topic
   }
 
-  runHook<T extends {}>(event: string, opts: T): Promise<void> {
-    return Rx.Observable.from(this.plugins)
-    .mergeMap(p => p.config.hooks[event] || [])
-    .mergeMap(async hook => {
+  async runHook<T extends {}>(event: string, opts: T) {
+    await Promise.all((this._hooks[event] || [])
+    .map(async hook => {
       try {
+        this.debug('running hook', event, hook)
         const m = await undefault(require(hook))
         await m({...opts as any || {}, config: this.config})
       } catch (err) {
         if (err.code === 'EEXIT') throw err
-        cli.warn(err, ['hook', event, hook])
+        let _cli = cli.scope(['hook', event, hook].join(':'))
+        _cli.warn(err)
       }
-    })
-    .toPromise()
+    }))
   }
 }
