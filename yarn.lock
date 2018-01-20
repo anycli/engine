@@ -163,11 +163,12 @@
     "@semantic-release/npm" "^2.6.1"
     semantic-release "^12.2.0"
 
-"@dxcli/dev-test@^0.2.2":
-  version "0.2.2"
-  resolved "https://registry.yarnpkg.com/@dxcli/dev-test/-/dev-test-0.2.2.tgz#9d46b00b5feacc45320c93b8c2576437dd42bded"
+"@dxcli/dev-test@^0.3.0":
+  version "0.3.0"
+  resolved "https://registry.yarnpkg.com/@dxcli/dev-test/-/dev-test-0.3.0.tgz#20966017248136830e5ab334620cf1c328f74263"
   dependencies:
     "@dxcli/dev-nyc-config" "^0.0.3"
+    "@dxcli/engine" "^0.0.1"
     "@types/ansi-styles" "^2.0.30"
     "@types/chai" "^4.1.1"
     "@types/chai-as-promised" "^7.1.0"
@@ -188,6 +189,16 @@
   dependencies:
     tslint "^5.9.1"
     tslint-xo "^0.5.0"
+
+"@dxcli/engine@^0.0.1":
+  version "0.0.1"
+  resolved "https://registry.yarnpkg.com/@dxcli/engine/-/engine-0.0.1.tgz#7ea281102ff53186836488cded490e446a61ebc2"
+  dependencies:
+    "@dxcli/command" "^0.1.9"
+    "@dxcli/config" "^0.1.17"
+    "@dxcli/loader" "^0.0.5"
+    cli-ux "^3.1.0"
+    rxjs "^5.5.6"
 
 "@dxcli/loader@^0.0.5":
   version "0.0.5"

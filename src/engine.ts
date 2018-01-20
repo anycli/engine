@@ -1,13 +1,12 @@
-import {Command} from '@dxcli/command'
-import {ICachedCommand, ICommandOptions, IConfig, IEngine, ITopic} from '@dxcli/config'
+import {ICachedCommand, ICLIConfig, IEngine, ITopic} from '@dxcli/config'
 import {load, Plugin} from '@dxcli/loader'
 import cli from 'cli-ux'
 import * as Rx from 'rxjs'
 
 import {undefault} from './util'
 
-export default class Engine extends Command implements IEngine {
-  public config: IConfig & {engine: IEngine}
+export default class Engine implements IEngine {
+  public config: ICLIConfig
   private _plugins: Plugin[]
   private _topics: ITopic[]
   private _commands: ICachedCommand[]
@@ -19,13 +18,13 @@ export default class Engine extends Command implements IEngine {
   get rootTopics(): ITopic[] { return this._topics.filter(t => !t.name.includes(':')) }
   get rootCommands(): ICachedCommand[] { return this.commands.filter(c => !c.id.includes(':')) }
 
-  async run() {
-    const id = this.argv[0]
-    await this.runHook('init', {id})
-    const cachedCommand = this.config.engine.findCommand(id)
-    if (!cachedCommand) return this.commandNotFound(id)
-    const command = await cachedCommand.load()
-    await command.run(this.argv.slice(1), {config: this.config})
+  async load(root: string) {
+    const results = await load({root, type: 'core'})
+    results.config.engine = this
+    this.config = results.config as any
+    this._plugins = results.plugins
+    this._commands = results.commands
+    this._topics = results.topics
   }
 
   findCommand(id: string, must: true): ICachedCommand
@@ -57,21 +56,5 @@ export default class Engine extends Command implements IEngine {
       }
     })
     .toPromise()
-  }
-
-  protected async init(argv: string[], opts: ICommandOptions & {root: string}) {
-    this.argv = argv
-    const results = await load({root: opts.root, type: 'core'})
-    results.config.engine = this
-    this.config = results.config as any
-    cli.config.errlog = this.config.errlog
-    this._plugins = results.plugins
-    this._commands = results.commands
-    this._topics = results.topics
-  }
-
-  protected async commandNotFound(id: string) {
-    await this.runHook('command_not_found', {id})
-    throw new Error(`command not found: ${id}`)
   }
 }
