@@ -19,8 +19,8 @@ const itRunsCommand = (args: string[], opts: RunCommandOptions) => {
       await run(args)
     } catch (err) {
       if (err.code !== 'EEXIT') throw err
-      if (err['cli-ux'].exitCode !== exit) {
-        throw new Error(`Expected exit code to be ${exit} but got ${err['cli-ux'].exitCode}`)
+      if (err['cli-ux'].exit !== exit) {
+        throw new Error(`Expected exit code to be ${exit} but got ${err['cli-ux'].exit}`)
       }
     }
     if (opts.stdout) expect(output.stdout).to.equal(opts.stdout)
