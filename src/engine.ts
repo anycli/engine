@@ -1,18 +1,18 @@
-import {ICachedCommand, ICLIConfig, IEngine, ITopic} from '@dxcli/config'
-import {load, Plugin} from '@dxcli/loader'
+import {ICachedCommand, ICLIConfig, IEngine, IPlugin, ITopic} from '@dxcli/config'
+import {load} from '@dxcli/loader'
 import cli from 'cli-ux'
 
 import {undefault} from './util'
 
 export default class Engine implements IEngine {
   public config: ICLIConfig
-  private _plugins: Plugin[]
+  private _plugins: IPlugin[]
   private _topics: ITopic[]
   private _commands: ICachedCommand[]
   private _hooks: {[k: string]: string[]}
   private debug: any
 
-  get plugins(): Plugin[] { return this._plugins }
+  get plugins(): IPlugin[] { return this._plugins }
   get topics(): ITopic[] { return this._topics }
   get commands(): ICachedCommand[] { return this._commands }
   get commandIDs(): string[] { return this.commands.map(c => c.id) }

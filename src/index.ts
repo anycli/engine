@@ -1,10 +1,11 @@
 import CommandBase from '@dxcli/command'
-import {ICommandOptions, IEngine} from '@dxcli/config'
+import {ICLIConfig, ICommandOptions, IEngine} from '@dxcli/config'
 import cli from 'cli-ux'
 
 import Engine from './engine'
 
 class Command extends CommandBase {
+  config: ICLIConfig
   engine: IEngine
 
   async run() {
