@@ -106,7 +106,7 @@
   dependencies:
     find-up "^2.1.0"
 
-"@dxcli/command@^0.1.10", "@dxcli/command@^0.1.11":
+"@dxcli/command@^0.1.11":
   version "0.1.11"
   resolved "https://registry.yarnpkg.com/@dxcli/command/-/command-0.1.11.tgz#47337cb261e563a372d2a6d02676000a204b7be1"
   dependencies:
@@ -151,12 +151,12 @@
     "@semantic-release/npm" "^2.6.1"
     semantic-release "^12.2.0"
 
-"@dxcli/dev-test@^0.4.3":
-  version "0.4.3"
-  resolved "https://registry.yarnpkg.com/@dxcli/dev-test/-/dev-test-0.4.3.tgz#59ab43daffd77b4e6e1230fa39fc8d8332a0a0a7"
+"@dxcli/dev-test@^0.5.1":
+  version "0.5.1"
+  resolved "https://registry.yarnpkg.com/@dxcli/dev-test/-/dev-test-0.5.1.tgz#6bb971ebbd4c247818f782ec0d9ca28782a6fb62"
   dependencies:
     "@dxcli/dev-nyc-config" "^0.0.3"
-    "@dxcli/engine" "^0.1.2"
+    "@dxcli/engine" "^0.1.3"
     "@types/ansi-styles" "^2.0.30"
     "@types/chai" "^4.1.1"
     "@types/chai-as-promised" "^7.1.0"
@@ -179,22 +179,33 @@
     tslint "^5.9.1"
     tslint-xo "^0.5.0"
 
-"@dxcli/engine@^0.1.2":
-  version "0.1.2"
-  resolved "https://registry.yarnpkg.com/@dxcli/engine/-/engine-0.1.2.tgz#cc25fd329cd60f6ceaadf60bf35e7895f754afa1"
+"@dxcli/engine@^0.1.3":
+  version "0.1.3"
+  resolved "https://registry.yarnpkg.com/@dxcli/engine/-/engine-0.1.3.tgz#eff48f11e63ced4088eacee4bf53b3fc9d5c41fc"
   dependencies:
-    "@dxcli/command" "^0.1.10"
+    "@dxcli/command" "^0.1.11"
     "@dxcli/config" "^0.1.20"
-    "@dxcli/loader" "^0.1.2"
-    cli-ux "^3.1.2"
+    "@dxcli/loader" "^0.1.3"
+    cli-ux "^3.1.3"
     debug "^3.1.0"
 
-"@dxcli/loader@^0.1.2", "@dxcli/loader@^0.1.3":
+"@dxcli/loader@^0.1.3":
   version "0.1.3"
   resolved "https://registry.yarnpkg.com/@dxcli/loader/-/loader-0.1.3.tgz#c10da8271b0d440d75eed5ca74aeb3663fda85f9"
   dependencies:
     "@dxcli/config" "^0.1.20"
     "@dxcli/manifest-file" "^0.0.1"
+    cli-ux "^3.1.3"
+    debug "^3.1.0"
+    globby "^7.1.1"
+    lodash "^4.17.4"
+
+"@dxcli/loader@^0.1.4":
+  version "0.1.4"
+  resolved "https://registry.yarnpkg.com/@dxcli/loader/-/loader-0.1.4.tgz#ac8e3e02574f191158beb9c7f1661229ebe52910"
+  dependencies:
+    "@dxcli/config" "^0.1.20"
+    "@dxcli/manifest-file" "^0.0.3"
     cli-ux "^3.1.3"
     debug "^3.1.0"
     globby "^7.1.1"
@@ -210,6 +221,16 @@
     lodash "^4.17.4"
     rwlockfile "^2.0.20"
 
+"@dxcli/manifest-file@^0.0.3":
+  version "0.0.3"
+  resolved "https://registry.yarnpkg.com/@dxcli/manifest-file/-/manifest-file-0.0.3.tgz#0bb44827b354e844f3276d4e38571104c2b8ecb2"
+  dependencies:
+    debug "^3.1.0"
+    fs-extra "^5.0.0"
+    load-json-file "^4.0.0"
+    lodash "^4.17.4"
+    rwlockfile "^2.0.21"
+
 "@dxcli/parser@^0.0.2":
   version "0.0.2"
   resolved "https://registry.yarnpkg.com/@dxcli/parser/-/parser-0.0.2.tgz#a60b1642626853c6e41014b78e6b2ea18cefa5db"
@@ -222,13 +243,13 @@
   version "0.0.0"
   resolved "https://registry.yarnpkg.com/@dxcli/screen/-/screen-0.0.0.tgz#a85f69bfb00d3961656bad5d7b12f8e603c7ce09"
 
-"@dxcli/version@^0.1.3":
-  version "0.1.3"
-  resolved "https://registry.yarnpkg.com/@dxcli/version/-/version-0.1.3.tgz#031a0d19346b41f00794d2cf4cf972183572383c"
+"@dxcli/version@^0.1.4":
+  version "0.1.4"
+  resolved "https://registry.yarnpkg.com/@dxcli/version/-/version-0.1.4.tgz#6f4da6fb9e8dbb58afcc3cb73974ba32abd573d6"
   dependencies:
-    "@dxcli/command" "^0.1.10"
+    "@dxcli/command" "^0.1.11"
     "@dxcli/config" "^0.1.20"
-    cli-ux "^3.1.2"
+    cli-ux "^3.1.3"
 
 "@heroku-cli/color@^1.0.4":
   version "1.1.1"
@@ -955,7 +976,7 @@ cli-ux@^2.0.21:
     supports-color "^5.1.0"
     ts-lodash "^4.0.8"
 
-cli-ux@^3.1.2, cli-ux@^3.1.3:
+cli-ux@^3.1.3:
   version "3.1.3"
   resolved "https://registry.yarnpkg.com/cli-ux/-/cli-ux-3.1.3.tgz#2ec39244aacc636ca329443884e4c5f825b796d8"
   dependencies:
@@ -3964,6 +3985,14 @@ rwlockfile@^2.0.20:
     fs-extra "^5.0.0"
     is-process-active "^1.0.1"
     tslib "^1.8.1"
+    uuid "^3.2.1"
+
+rwlockfile@^2.0.21:
+  version "2.0.21"
+  resolved "https://registry.yarnpkg.com/rwlockfile/-/rwlockfile-2.0.21.tgz#c2eb13d77df18dbb268dcd28017df17d5a97f8a8"
+  dependencies:
+    fs-extra "^5.0.0"
+    is-process-active "^1.0.1"
     uuid "^3.2.1"
 
 rx-lite-aggregates@^4.0.8:
