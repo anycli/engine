@@ -6,8 +6,6 @@ import * as Rx from 'rxjs'
 
 import {undefault} from './util'
 
-const parentModule = module.parent && module.parent.parent && module.parent.parent.filename
-
 export default class Engine extends Command implements IEngine {
   public config: IConfig & {engine: IEngine}
   private _plugins: Plugin[]
@@ -61,9 +59,9 @@ export default class Engine extends Command implements IEngine {
     .toPromise()
   }
 
-  protected async init(argv: string[], opts: ICommandOptions = {}) {
+  protected async init(argv: string[], opts: ICommandOptions & {root: string}) {
     this.argv = argv
-    const results = await load({root: opts.root || parentModule!, type: 'core'})
+    const results = await load({root: opts.root, type: 'core'})
     results.config.engine = this
     this.config = results.config as any
     cli.config.errlog = this.config.errlog

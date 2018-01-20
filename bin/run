@@ -1,5 +1,5 @@
 #!/usr/bin/env node
 
 require('ts-node').register()
-const {Engine} = require('../src')
-Engine.run()
+const {run} = require('../src')
+run()

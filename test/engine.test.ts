@@ -1,6 +1,6 @@
 import {describe, expect, it, output} from '@dxcli/dev-test'
 
-import {Engine} from '../src'
+import {run} from '../src'
 
 export interface RunCommandOptions {
   description?: string
@@ -16,7 +16,7 @@ const itRunsCommand = (args: string[], opts: RunCommandOptions) => {
   test(description, async () => {
     const exit = opts.exit || 0
     try {
-      await Engine.run(args)
+      await run(args)
     } catch (err) {
       if (err.code !== 'EEXIT') throw err
       if (err['cli-ux'].exitCode !== exit) {
