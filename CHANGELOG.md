@@ -1,3 +1,11 @@
+<a name="0.1.5"></a>
+## [0.1.5](https://github.com/dxcli/engine/compare/7f613343c938ce1fc15ec17a673f377f050eb79d...v0.1.5) (2018-01-20)
+
+
+### Bug Fixes
+
+* updated command ([9f57235](https://github.com/dxcli/engine/commit/9f57235))
+
 <a name="0.1.4"></a>
 ## [0.1.4](https://github.com/dxcli/engine/compare/ae8e8064f4a821fc66ed6df8b9a9327f0751a43a...v0.1.4) (2018-01-20)
 
