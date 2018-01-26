@@ -1,4 +1,4 @@
-import {expect, fancy} from 'fancy-mocha'
+import {expect, fancy} from 'fancy-test'
 
 import {run} from '../src'
 
@@ -8,24 +8,24 @@ describe('CLI', () => {
   describe('version', () => {
     const stdout = `@dxcli/engine/${pjson.version} (${process.platform}-${process.arch}) node-${process.version}\n`
 
-    fancy()
+    fancy
     .stdout()
-    .run(() => run(['--version']))
+    .do(() => run(['--version']))
     .catch((err: any) => expect(err['cli-ux'].exit).to.equal(0))
-    .run(output => expect(output.stdout).to.equal(stdout))
-    .end('--version')
+    .do(output => expect(output.stdout).to.equal(stdout))
+    .it('--version')
 
-    fancy()
+    fancy
     .stdout()
-    .run(() => run(['-v']))
+    .do(() => run(['-v']))
     .catch((err: any) => expect(err['cli-ux'].exit).to.equal(0))
-    .run(output => expect(output.stdout).to.equal(stdout))
+    .do(output => expect(output.stdout).to.equal(stdout))
     .end('-v')
 
-    fancy()
+    fancy
     .stdout()
-    .run(() => run(['version']))
-    .run(output => expect(output.stdout).to.equal(stdout))
-    .end('version')
+    .do(() => run(['version']))
+    .do(output => expect(output.stdout).to.equal(stdout))
+    .it('version')
   })
 })
