@@ -162,20 +162,20 @@
     tslint "^5.9.1"
     tslint-xo "^0.5.0"
 
-"@dxcli/loader@^0.1.7":
-  version "0.1.7"
-  resolved "https://registry.yarnpkg.com/@dxcli/loader/-/loader-0.1.7.tgz#4fb43bf07987b2780abea7dd66aa9e334fa0fe57"
+"@dxcli/loader@^0.2.0":
+  version "0.2.0"
+  resolved "https://registry.yarnpkg.com/@dxcli/loader/-/loader-0.2.0.tgz#0024d490bb7ab84f90fb786ef942eca081d5dfd9"
   dependencies:
     "@dxcli/config" "^0.1.24"
-    "@dxcli/manifest-file" "^0.0.3"
+    "@dxcli/manifest-file" "^0.0.4"
     cli-ux "^3.1.5"
     debug "^3.1.0"
     globby "^7.1.1"
     lodash "^4.17.4"
 
-"@dxcli/manifest-file@^0.0.3":
-  version "0.0.3"
-  resolved "https://registry.yarnpkg.com/@dxcli/manifest-file/-/manifest-file-0.0.3.tgz#0bb44827b354e844f3276d4e38571104c2b8ecb2"
+"@dxcli/manifest-file@^0.0.4":
+  version "0.0.4"
+  resolved "https://registry.yarnpkg.com/@dxcli/manifest-file/-/manifest-file-0.0.4.tgz#cc5f250f9baf59083ad9cc4693af61f08cc0daf2"
   dependencies:
     debug "^3.1.0"
     fs-extra "^5.0.0"
