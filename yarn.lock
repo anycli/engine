@@ -111,9 +111,9 @@
     cli-ux "^3.1.5"
     debug "^3.1.0"
 
-"@dxcli/command@^0.1.16":
-  version "0.1.16"
-  resolved "https://registry.yarnpkg.com/@dxcli/command/-/command-0.1.16.tgz#aa1e86576198d816182b666f51c8a1a998326f57"
+"@dxcli/command@^0.1.17":
+  version "0.1.17"
+  resolved "https://registry.yarnpkg.com/@dxcli/command/-/command-0.1.17.tgz#5437fe8ca459a2c7598fe207c3e287a473355a4f"
   dependencies:
     "@dxcli/config" "^0.1.24"
     "@dxcli/parser" "^0.0.5"
@@ -124,6 +124,16 @@
 "@dxcli/config@^0.1.22", "@dxcli/config@^0.1.24":
   version "0.1.24"
   resolved "https://registry.yarnpkg.com/@dxcli/config/-/config-0.1.24.tgz#fc6d14f7c91b742bf3d0ca7c2974565a959471ae"
+  dependencies:
+    debug "^3.1.0"
+    fs-extra "^5.0.0"
+    load-json-file "^4.0.0"
+    lodash "^4.17.4"
+    read-pkg "^3.0.0"
+
+"@dxcli/config@^0.1.26":
+  version "0.1.26"
+  resolved "https://registry.yarnpkg.com/@dxcli/config/-/config-0.1.26.tgz#36458424cb8cc9c1499659bbff3676fa7b0292da"
   dependencies:
     debug "^3.1.0"
     fs-extra "^5.0.0"
@@ -155,20 +165,20 @@
     "@semantic-release/npm" "^2.6.4"
     semantic-release "^12.2.2"
 
-"@dxcli/dev-tslint@^0.0.15":
-  version "0.0.15"
-  resolved "https://registry.yarnpkg.com/@dxcli/dev-tslint/-/dev-tslint-0.0.15.tgz#54dbd49deccaaaf9dc590d83894415e3fab0b0ac"
+"@dxcli/dev-tslint@^0.0.16":
+  version "0.0.16"
+  resolved "https://registry.yarnpkg.com/@dxcli/dev-tslint/-/dev-tslint-0.0.16.tgz#84aa077d5f0c92f770b2b7eb091588c8553b4c9f"
   dependencies:
     tslint "^5.9.1"
     tslint-xo "^0.5.0"
 
-"@dxcli/loader@^0.2.0":
-  version "0.2.0"
-  resolved "https://registry.yarnpkg.com/@dxcli/loader/-/loader-0.2.0.tgz#0024d490bb7ab84f90fb786ef942eca081d5dfd9"
+"@dxcli/loader@^0.2.4":
+  version "0.2.4"
+  resolved "https://registry.yarnpkg.com/@dxcli/loader/-/loader-0.2.4.tgz#6413b149cc96248639eaf0dcfaa964dd6ff70104"
   dependencies:
-    "@dxcli/config" "^0.1.24"
+    "@dxcli/config" "^0.1.26"
     "@dxcli/manifest-file" "^0.0.4"
-    cli-ux "^3.1.5"
+    cli-ux "^3.1.6"
     debug "^3.1.0"
     globby "^7.1.1"
     lodash "^4.17.4"
@@ -912,6 +922,22 @@ cli-table@^0.3.1:
 cli-ux@^3.1.5:
   version "3.1.5"
   resolved "https://registry.yarnpkg.com/cli-ux/-/cli-ux-3.1.5.tgz#c6d3ed628a54067ad2084dd465ea015ca26488c9"
+  dependencies:
+    "@dxcli/screen" "^0.0.1"
+    "@heroku/linewrap" "^1.0.0"
+    ansi-styles "^3.2.0"
+    cardinal "^1.0.0"
+    chalk "^2.3.0"
+    fs-extra "^5.0.0"
+    lodash "^4.17.4"
+    password-prompt "^1.0.4"
+    semver "^5.5.0"
+    strip-ansi "^4.0.0"
+    supports-color "^5.1.0"
+
+cli-ux@^3.1.6:
+  version "3.1.6"
+  resolved "https://registry.yarnpkg.com/cli-ux/-/cli-ux-3.1.6.tgz#e1190fcc429ae6a101dbaf24640027485b9b3506"
   dependencies:
     "@dxcli/screen" "^0.0.1"
     "@heroku/linewrap" "^1.0.0"
