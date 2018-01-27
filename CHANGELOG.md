@@ -1,3 +1,11 @@
+<a name="0.1.12"></a>
+## [0.1.12](https://github.com/dxcli/engine/compare/3680cbd937cbfbb15537fee91948bbc8d94837d1...v0.1.12) (2018-01-27)
+
+
+### Bug Fixes
+
+* updated deps ([987570c](https://github.com/dxcli/engine/commit/987570c))
+
 <a name="0.1.11"></a>
 ## [0.1.11](https://github.com/dxcli/engine/compare/b8bd7546f1eab6131ef057672601edc1d3ed73aa...v0.1.11) (2018-01-26)
 
