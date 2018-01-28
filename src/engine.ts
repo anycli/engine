@@ -55,8 +55,7 @@ export default class Engine implements IEngine {
         await m({...opts as any || {}, config: this.config})
       } catch (err) {
         if (err.code === 'EEXIT') throw err
-        let _cli = cli.scope(['hook', event, hook].join(':'))
-        _cli.warn(err)
+        cli.warn(err, {context: {hook: event, module: hook}})
       }
     }))
   }
