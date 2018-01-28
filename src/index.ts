@@ -14,11 +14,14 @@ class Command extends CommandBase {
     await this.engine.runHook('init', {id})
     const cachedCommand = this.engine.findCommand(id)
     if (!cachedCommand) return this.commandNotFound(id)
+    this.debug('found command', cachedCommand.id)
     const command = await cachedCommand.load()
+    this.debug('loaded command', command.id)
     await command.run(this.argv.slice(1), {config: this.config})
   }
 
   protected async init(argv: string[], opts: ICommandOptions & {root: string}) {
+    this.debug = require('debug')('@dxcli/engine')
     const root = opts.root || module.parent!.filename
     this.argv = argv
     this.engine = new Engine()

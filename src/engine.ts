@@ -47,6 +47,7 @@ export default class Engine implements IEngine {
   }
 
   async runHook<T extends {}>(event: string, opts: T) {
+    this.debug('starting hook', event)
     await Promise.all((this._hooks[event] || [])
     .map(async hook => {
       try {
@@ -58,5 +59,6 @@ export default class Engine implements IEngine {
         cli.warn(err, {context: {hook: event, module: hook}})
       }
     }))
+    this.debug('finished hook', event)
   }
 }
