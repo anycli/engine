@@ -5,13 +5,18 @@ import cli from 'cli-ux'
 import {undefault} from './util'
 
 export default class Engine implements IEngine {
-  public config: ICLIConfig
+  private _config: ICLIConfig
   private _plugins: IPlugin[]
   private _topics: ITopic[]
   private _commands: ICachedCommand[]
   private _hooks: {[k: string]: string[]}
   private debug: any
 
+  public get config() { return this._config}
+  public set config(c) {
+    this._config = c
+    this.debug = require('debug')(['@dxcli/engine', this._config.name].join(':'))
+  }
   get plugins(): IPlugin[] { return this._plugins }
   get topics(): ITopic[] { return this._topics }
   get commands(): ICachedCommand[] { return this._commands }
@@ -19,12 +24,15 @@ export default class Engine implements IEngine {
   get rootTopics(): ITopic[] { return this._topics.filter(t => !t.name.includes(':')) }
   get rootCommands(): ICachedCommand[] { return this.commands.filter(c => !c.id.includes(':')) }
 
-  async load(root: string | ICLIConfig) {
+  async load(rootOrConfig: string | ICLIConfig) {
     let results
-    if (typeof root === 'string') results = await load({root, type: 'core'})
-    else results = await load({config: root, root: root.root, type: 'core'})
-    this.debug = require('debug')(['@dxcli/engine', results.config.name].join(':'))
-    this.config = results.config as any
+    if (typeof rootOrConfig === 'string') {
+      results = await load({root: rootOrConfig, type: 'core'})
+      this.config = results.config as any
+    } else {
+      this.config = rootOrConfig
+      results = await load({config: rootOrConfig, root: rootOrConfig.root, type: 'core'})
+    }
     this._plugins = results.plugins
     this._commands = results.commands
     this._topics = results.topics

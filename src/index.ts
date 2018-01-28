@@ -26,7 +26,10 @@ class Command extends CommandBase {
     this.config = await read({root}) as ICLIConfig
     this.initDebug()
     this.engine = new Engine()
+    // TODO: put this back when we get the loader working with it
+    // this.config.engine = this.engine
     await this.engine.load(this.config as any)
+    this.config.engine = this.engine
   }
 
   protected async commandNotFound(id: string) {

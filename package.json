@@ -5,7 +5,7 @@
   "author": "Jeff Dickey @jdxcode",
   "bugs": "https://github.com/dxcli/engine/issues",
   "dependencies": {
-    "@dxcli/loader": "^0.2.12",
+    "@dxcli/loader": "^0.2.14",
     "cli-ux": "^3.3.8",
     "debug": "^3.1.0"
   },

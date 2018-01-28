@@ -149,9 +149,9 @@
     eslint-config-dxcli "^1.2.0"
     nyc "^11.4.1"
 
-"@dxcli/loader@^0.2.12":
-  version "0.2.12"
-  resolved "https://registry.yarnpkg.com/@dxcli/loader/-/loader-0.2.12.tgz#d4e65c71d344de28c7434b9457ae50fef089d646"
+"@dxcli/loader@^0.2.14":
+  version "0.2.14"
+  resolved "https://registry.yarnpkg.com/@dxcli/loader/-/loader-0.2.14.tgz#147b8353691c3dfa5445ca66a6517a583ca76fbf"
   dependencies:
     "@dxcli/manifest-file" "^0.1.0"
     cli-ux "^3.3.8"
