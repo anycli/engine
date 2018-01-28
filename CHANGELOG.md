@@ -1,3 +1,11 @@
+<a name="0.1.17"></a>
+## [0.1.17](https://github.com/dxcli/engine/compare/e14cf350bff1d00259afafe5c97ec1cec2baa2ac...v0.1.17) (2018-01-28)
+
+
+### Bug Fixes
+
+* bumped loader ([4040e6d](https://github.com/dxcli/engine/commit/4040e6d))
+
 <a name="0.1.16"></a>
 ## [0.1.16](https://github.com/dxcli/engine/compare/46b31c2c040483948cd49a51f908469eb281d4dc...v0.1.16) (2018-01-28)
 
