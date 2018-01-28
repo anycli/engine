@@ -21,12 +21,12 @@ class Command extends CommandBase {
   }
 
   protected async init(argv: string[], opts: ICommandOptions & {root: string}) {
-    this.debug = require('debug')('@dxcli/engine')
     const root = opts.root || module.parent!.filename
     this.argv = argv
     this.engine = new Engine()
     await this.engine.load(root)
     this.config = this.engine.config
+    this.initDebug()
   }
 
   protected async commandNotFound(id: string) {
