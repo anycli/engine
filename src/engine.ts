@@ -19,9 +19,10 @@ export default class Engine implements IEngine {
   get rootTopics(): ITopic[] { return this._topics.filter(t => !t.name.includes(':')) }
   get rootCommands(): ICachedCommand[] { return this.commands.filter(c => !c.id.includes(':')) }
 
-  async load(root: string) {
-    const results = await load({root, type: 'core'})
-    results.config.engine = this
+  async load(root: string | ICLIConfig) {
+    let results
+    if (typeof root === 'string') results = await load({root, type: 'core'})
+    else results = await load({config: root, root: root.root, type: 'core'})
     this.debug = require('debug')(['@dxcli/engine', results.config.name].join(':'))
     this.config = results.config as any
     this._plugins = results.plugins
