@@ -54,7 +54,6 @@
   "scripts": {
     "commitmsg": "dxcli-commitlint",
     "precommit": "nps lint -l warn",
-    "prepare": "nps build",
     "prepublishOnly": "nps build",
     "test": "nps test -l warn"
   },
