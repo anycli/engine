@@ -14,7 +14,7 @@
     "@dxcli/dev": "^2.0.12",
     "@dxcli/not-found": "^0.1.1",
     "@dxcli/semantic-release": "^0.3.3",
-    "@dxcli/tslint": "^0.0.24",
+    "@dxcli/tslint": "^0.1.0",
     "@dxcli/version": "^0.1.7",
     "chai": "^4.1.2",
     "cli-ux": "^3.2.2",
