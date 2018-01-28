@@ -15,7 +15,7 @@
     "@dxcli/dev": "^2.0.2",
     "@dxcli/not-found": "^0.1.1",
     "@dxcli/version": "^0.1.5",
-    "fancy-test": "^0.5.4",
+    "fancy-test": "^0.6.0",
     "husky": "^0.14.3",
     "nps-utils": "^1.5.0"
   },
