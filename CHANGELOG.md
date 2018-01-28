@@ -1,3 +1,11 @@
+<a name="0.1.13"></a>
+## [0.1.13](https://github.com/dxcli/engine/compare/987570c98afe8b6bc27546980eec04de0a66f239...v0.1.13) (2018-01-28)
+
+
+### Bug Fixes
+
+* move deps to peer ([a5d0f5a](https://github.com/dxcli/engine/commit/a5d0f5a))
+
 <a name="0.1.12"></a>
 ## [0.1.12](https://github.com/dxcli/engine/compare/3680cbd937cbfbb15537fee91948bbc8d94837d1...v0.1.12) (2018-01-27)
 
