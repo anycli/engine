@@ -24,12 +24,10 @@ class Command extends CommandBase {
     const root = opts.root || module.parent!.filename
     this.argv = argv
     this.config = await read({root}) as ICLIConfig
-    this.initDebug()
+    this.initDebug(this.config)
     this.engine = new Engine()
-    // TODO: put this back when we get the loader working with it
-    // this.config.engine = this.engine
-    await this.engine.load(this.config as any)
     this.config.engine = this.engine
+    await this.engine.load(this.config)
   }
 
   protected async commandNotFound(id: string) {
