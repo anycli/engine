@@ -1,3 +1,12 @@
+<a name="0.1.18"></a>
+## [0.1.18](https://github.com/dxcli/engine/compare/4040e6d2b8fded0152f3d57d1f9f55291a60c56e...v0.1.18) (2018-01-29)
+
+
+### Bug Fixes
+
+* bring loader logic into engine ([ccf647b](https://github.com/dxcli/engine/commit/ccf647b))
+* config work ([7c0f097](https://github.com/dxcli/engine/commit/7c0f097))
+
 <a name="0.1.17"></a>
 ## [0.1.17](https://github.com/dxcli/engine/compare/e14cf350bff1d00259afafe5c97ec1cec2baa2ac...v0.1.17) (2018-01-28)
 
