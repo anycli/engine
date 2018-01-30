@@ -172,7 +172,7 @@ export default class Engine implements IEngine {
       async function fetchCommandIDs(): Promise<string[]> {
         function idFromPath(file: string) {
           const p = path.parse(file)
-          const topics = p.dir.split(path.sep)
+          const topics = p.dir.split('/')
           let command = p.name !== 'index' && p.name
           return _([...topics, command]).compact().join(':')
         }
