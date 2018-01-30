@@ -16,10 +16,11 @@ export interface LoadOptions {
 
 export default class Engine implements IEngine {
   public config: ICLIConfig
-  private readonly _plugins: IPlugin[] = []
+  private _plugins: IPlugin[]
   private readonly _commands: ICachedCommand[] = []
   private readonly _topics: ITopic[] = []
   private readonly _hooks: {[k: string]: string[]} = {}
+  private rootPlugin: IPlugin
   private debug: any
 
   get plugins(): IPlugin[] { return this._plugins }
@@ -63,27 +64,39 @@ export default class Engine implements IEngine {
         registerTSNode(this.debug, config.root)
       }
       if (config.pluginsModule) {
-        let plugins
-        let fetch = (d: string) => undefault(require(d))(config, loadPlugin)
-        if (config.pluginsModuleTS) {
-          try {
-            plugins = await fetch(config.pluginsModuleTS)
-          } catch (err) {
-            cli.warn(err)
+        try {
+          let plugins
+          let fetch = (d: string) => undefault(require(d))(config, loadPlugin)
+          if (config.pluginsModuleTS) {
+            try {
+              plugins = await fetch(config.pluginsModuleTS)
+            } catch (err) {
+              cli.warn(err)
+            }
           }
+          if (!plugins) plugins = await fetch(config.pluginsModule)
+          plugin.plugins = plugins
+        } catch (err) {
+          cli.warn(err)
         }
-        if (!plugins) plugins = await fetch(config.pluginsModule)
-        plugin.plugins = plugins
       }
       if (_.isArray(pjson.dxcli.plugins)) {
         const promises = pjson.dxcli.plugins.map(p => loadPlugin({root: config.root, type, name: p}).catch(cli.warn))
         plugin.plugins = _(await Promise.all(promises)).compact().flatMap().value() as IPlugin[]
       }
 
-      this.plugins.push(plugin)
       return plugin
     }
-    await loadPlugin({type: 'core', root: config.root})
+    this.rootPlugin = await loadPlugin({type: 'core', root: config.root})
+
+    function getAllPlugins(plugin: IPlugin): IPlugin[] {
+      let plugins = [plugin]
+      for (let p of plugin.plugins) {
+        plugins.push(...getAllPlugins(p))
+      }
+      return plugins
+    }
+    this._plugins = getAllPlugins(this.rootPlugin)
 
     await this.runHook('legacy', {engine: this})
 
