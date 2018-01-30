@@ -24,11 +24,6 @@ class Command extends CommandBase {
     const root = opts.root || module.parent!.filename
     this.argv = argv
     this.config = await read({root}) as ICLIConfig
-
-    // set global config for plugins to use in any part of their loading
-    if (!global.dxcli) global.dxcli = {} as any
-    if (!global.dxcli.config) global.dxcli.config = this.config
-
     this.initDebug(this.config)
     this.engine = new Engine()
     this.config.engine = this.engine

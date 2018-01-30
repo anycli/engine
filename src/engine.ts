@@ -31,6 +31,11 @@ export default class Engine implements IEngine {
 
   async load(config: IConfig, loadOptions: LoadOptions = {}) {
     this.config = {...config, engine: this}
+
+    // set global config for plugins to use in any part of their loading
+    if (!global.dxcli) global.dxcli = {} as any
+    if (!global.dxcli.config) global.dxcli.config = this.config
+
     this.debug = require('debug')(['@dxcli/engine', this.config.name].join(':'))
 
     const loadPlugin = async (opts: {root: string, type: string, config?: IConfig, name?: string, tag?: string}) => {
