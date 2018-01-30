@@ -1,3 +1,11 @@
+<a name="0.1.21"></a>
+## [0.1.21](https://github.com/dxcli/engine/compare/b9e390228a2ecd0ae145876ea0ad1cabc4b6573d...v0.1.21) (2018-01-30)
+
+
+### Bug Fixes
+
+* add global config ([a04df22](https://github.com/dxcli/engine/commit/a04df22))
+
 <a name="0.1.20"></a>
 ## [0.1.20](https://github.com/dxcli/engine/compare/c58ff694143cac1a429e09188441b16e20200e06...v0.1.20) (2018-01-30)
 
