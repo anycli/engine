@@ -1,5 +1,5 @@
 import {convertToCached} from '@dxcli/command'
-import {ICachedCommand, ICLIConfig, ICommand, IConfig, IEngine, IPlugin, ITopic, read} from '@dxcli/config'
+import {ICachedCommand, ICommand, IConfig, IEngine, IPlugin, ITopic, read} from '@dxcli/config'
 import cli from 'cli-ux'
 import * as fs from 'fs-extra'
 import * as globby from 'globby'
@@ -15,7 +15,7 @@ export interface LoadOptions {
 }
 
 export default class Engine implements IEngine {
-  public config: ICLIConfig
+  public config: IConfig
   private _plugins: IPlugin[]
   private readonly _commands: ICachedCommand[] = []
   private readonly _topics: ITopic[] = []

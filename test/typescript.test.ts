@@ -21,22 +21,22 @@ const reset = async (root: string) => {
 
 describe('hooks', () => {
   fancy
-  .do(loadPlugin(path.join(__dirname, 'fixtures/typescript')))
   .stdout()
+  .do(loadPlugin(path.join(__dirname, 'fixtures/typescript')))
   .do(async ctx => {
     const cmd = await ctx.engine.commands[0].load()
     await cmd.run([])
-    expect(ctx.stdout).to.equal('it works!\n')
+    expect(ctx.stdout).to.equal('loading plugins\nit works!\n')
   })
   .it('loads a TS plugin')
 
   fancy
-  .do(loadPlugin(path.join(__dirname, 'fixtures/typescript2')))
   .stdout()
+  .do(loadPlugin(path.join(__dirname, 'fixtures/typescript2')))
   .do(async ctx => {
     const cmd = await ctx.engine.commands[0].load()
     await cmd.run([])
-    expect(ctx.stdout).to.equal('it works 2!\n')
+    expect(ctx.stdout).to.equal('loading plugins\nit works 2!\n')
   })
   .it('loads 2 TS plugins')
 })

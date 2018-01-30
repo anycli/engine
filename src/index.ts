@@ -1,11 +1,10 @@
 import CommandBase from '@dxcli/command'
-import {ICLIConfig, ICommandOptions, IEngine, read} from '@dxcli/config'
+import {ICommandOptions, IEngine, read} from '@dxcli/config'
 import cli from 'cli-ux'
 
 import Engine from './engine'
 
 class Command extends CommandBase {
-  config: ICLIConfig
   engine: IEngine
 
   async run() {
@@ -23,7 +22,7 @@ class Command extends CommandBase {
   protected async init(argv: string[], opts: ICommandOptions & {root: string}) {
     const root = opts.root || module.parent!.filename
     this.argv = argv
-    this.config = await read({root}) as ICLIConfig
+    this.config = await read({root})
     this.initDebug(this.config)
     this.engine = new Engine()
     this.config.engine = this.engine

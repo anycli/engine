@@ -120,9 +120,9 @@
     lodash "^4.17.4"
     tslib "^1.9.0"
 
-"@dxcli/config@^0.1.39":
-  version "0.1.39"
-  resolved "https://registry.yarnpkg.com/@dxcli/config/-/config-0.1.39.tgz#b6d688b69d00a0bd5ce1089ab645ea436b4cccc3"
+"@dxcli/config@^0.1.40":
+  version "0.1.40"
+  resolved "https://registry.yarnpkg.com/@dxcli/config/-/config-0.1.40.tgz#bc4e57be522e2882ff19d81586065a4f6b6a0cb1"
   dependencies:
     cli-ux "^3.3.8"
     debug "^3.1.0"
@@ -148,9 +148,9 @@
     eslint-config-dxcli "^1.2.1"
     nyc "^11.4.1"
 
-"@dxcli/help@^0.2.0":
-  version "0.2.0"
-  resolved "https://registry.yarnpkg.com/@dxcli/help/-/help-0.2.0.tgz#1765cf14b6f1b26c91cc8b34dd517e5d9809f409"
+"@dxcli/help@^0.2.1":
+  version "0.2.1"
+  resolved "https://registry.yarnpkg.com/@dxcli/help/-/help-0.2.1.tgz#b5d1ee160394bd6d984c711c213bd30534d67ce7"
   dependencies:
     "@dxcli/command" "^0.2.8"
     "@dxcli/screen" "^0.0.2"
