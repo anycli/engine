@@ -1,3 +1,11 @@
+<a name="0.1.23"></a>
+## [0.1.23](https://github.com/dxcli/engine/compare/8c89e9f2fc2c374133f105b8c73e7f3b6466199c...v0.1.23) (2018-01-30)
+
+
+### Bug Fixes
+
+* read all plugins in order ([6e7dd75](https://github.com/dxcli/engine/commit/6e7dd75))
+
 <a name="0.1.22"></a>
 ## [0.1.22](https://github.com/dxcli/engine/compare/a04df22722dd930d093eac8c4b304a1aeff0fd52...v0.1.22) (2018-01-30)
 
