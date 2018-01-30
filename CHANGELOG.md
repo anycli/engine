@@ -1,3 +1,12 @@
+<a name="0.1.20"></a>
+## [0.1.20](https://github.com/dxcli/engine/compare/c58ff694143cac1a429e09188441b16e20200e06...v0.1.20) (2018-01-30)
+
+
+### Bug Fixes
+
+* added typescript tests ([b9e3902](https://github.com/dxcli/engine/commit/b9e3902))
+* fixed path separator on windows ([9e74d6e](https://github.com/dxcli/engine/commit/9e74d6e))
+
 <a name="0.1.19"></a>
 ## [0.1.19](https://github.com/dxcli/engine/compare/ccf647bc33ac159777d2be3f0fae8854a664ebfc...v0.1.19) (2018-01-29)
 
