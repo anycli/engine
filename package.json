@@ -18,6 +18,7 @@
     "@dxcli/command": "^0.2.8",
     "@dxcli/config": "^0.1.39",
     "@dxcli/dev": "^2.0.16",
+    "@dxcli/help": "^0.2.0",
     "@dxcli/not-found": "^0.1.3",
     "@dxcli/nyc-config": "^0.0.4",
     "@dxcli/tslint": "^0.1.3",
@@ -45,6 +46,7 @@
   },
   "dxcli": {
     "plugins": [
+      "@dxcli/help",
       "@dxcli/not-found",
       "@dxcli/version"
     ]
