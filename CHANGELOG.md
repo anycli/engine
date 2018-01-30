@@ -1,3 +1,11 @@
+<a name="0.1.22"></a>
+## [0.1.22](https://github.com/dxcli/engine/compare/a04df22722dd930d093eac8c4b304a1aeff0fd52...v0.1.22) (2018-01-30)
+
+
+### Bug Fixes
+
+* move global set to engine ([8c89e9f](https://github.com/dxcli/engine/commit/8c89e9f))
+
 <a name="0.1.21"></a>
 ## [0.1.21](https://github.com/dxcli/engine/compare/b9e390228a2ecd0ae145876ea0ad1cabc4b6573d...v0.1.21) (2018-01-30)
 
