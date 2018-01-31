@@ -6,23 +6,10 @@ import Engine from './engine'
 export default class Command extends CommandBase {
   static parse = false
 
-  static async run(argv = process.argv.slice(2), opts: Config.ICommandOptions = {}) {
-    let cmd!: Command
-    try {
-      let config
-      if (opts.config && Config.isIConfig(opts.config)) config = opts.config
-      else config = await Config.read({root: opts.root || module.parent!.parent!.filename})
-      cmd = new this(argv, config)
-      return await cmd.run()
-    } finally {
-      if (cmd) await cmd.finally()
-    }
-  }
-
   engine: Config.IEngine
 
-  constructor(argv: string[], config: Config.IConfig) {
-    super(argv, config)
+  constructor(args: string[], opts: Config.ICommandOptions) {
+    super(args, opts)
     this.engine = this.config.engine = new Engine()
   }
 
