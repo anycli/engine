@@ -3,8 +3,6 @@ import CommandBase from '@anycli/command'
 import Engine from './engine'
 
 export default class Command extends CommandBase {
-  static parse = false
-
   engine = new Engine()
 
   async run() {
