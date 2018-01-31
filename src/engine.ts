@@ -26,7 +26,7 @@ export default class Engine implements IEngine {
   get plugins(): IPlugin[] { return this._plugins }
   get topics(): ITopic[] { return this._topics }
   get commands(): ICachedCommand[] { return this._commands }
-  get commandIDs(): string[] { return this.commands.map(c => c.id) }
+  get commandIDs(): string[] { return _(this.commands).map(c => c.id).uniq().value() }
   get rootTopics(): ITopic[] { return this.topics.filter(t => !t.name.includes(':')) }
   get rootCommands(): ICachedCommand[] { return this.commands.filter(c => !c.id.includes(':')) }
 
