@@ -3,8 +3,18 @@
   "description": "main anycli component",
   "version": "0.1.33",
   "author": "Jeff Dickey @jdxcode",
+  "anycli": {
+    "devPlugins": [
+      "@anycli/help",
+      "@anycli/not-found",
+      "@anycli/version",
+      "@anycli/plugins"
+    ]
+  },
   "bugs": "https://github.com/anycli/engine/issues",
   "dependencies": {
+    "@anycli/command": "^0.2.17",
+    "@anycli/config": "^0.2.3",
     "@anycli/manifest-file": "^0.2.0",
     "cli-ux": "^3.3.10",
     "debug": "^3.1.0",
@@ -13,8 +23,6 @@
     "lodash": "^4.17.4"
   },
   "devDependencies": {
-    "@anycli/command": "^0.2.17",
-    "@anycli/config": "^0.2.3",
     "@anycli/help": "^0.3.0",
     "@anycli/not-found": "^0.1.6",
     "@anycli/plugins": "^0.1.8",
@@ -43,14 +51,6 @@
     "ts-node": "^4.1.0",
     "typescript": "^2.7.1"
   },
-  "anycli": {
-    "devPlugins": [
-      "@anycli/help",
-      "@anycli/not-found",
-      "@anycli/version",
-      "@anycli/plugins"
-    ]
-  },
   "engines": {
     "node": ">=8.0.0"
   },
@@ -63,10 +63,6 @@
   ],
   "license": "MIT",
   "main": "lib/index.js",
-  "peerDependencies": {
-    "@anycli/command": "^0.1.18",
-    "@anycli/config": "^0.1.26"
-  },
   "repository": "anycli/engine",
   "scripts": {
     "commitmsg": "commitlint -x @commitlint/config-conventional -e $GIT_PARAMS",
