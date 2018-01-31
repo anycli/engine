@@ -1,5 +1,5 @@
-import {convertToCached} from '@dxcli/command'
-import {ICachedCommand, ICommand, IConfig, IEngine, IPlugin, ITopic, read} from '@dxcli/config'
+import {convertToCached} from '@anycli/command'
+import {ICachedCommand, ICommand, IConfig, IEngine, IPlugin, ITopic, read} from '@anycli/config'
 import cli from 'cli-ux'
 import * as fs from 'fs-extra'
 import * as globby from 'globby'
@@ -34,10 +34,10 @@ export default class Engine implements IEngine {
     this.config = {...config, engine: this}
 
     // set global config for plugins to use in any part of their loading
-    if (!global.dxcli) global.dxcli = {} as any
-    if (!global.dxcli.config) global.dxcli.config = this.config
+    if (!global.anycli) global.anycli = {} as any
+    if (!global.anycli.config) global.anycli.config = this.config
 
-    this.debug = require('debug')(['@dxcli/engine', this.config.name].join(':'))
+    this.debug = require('debug')(['@anycli/engine', this.config.name].join(':'))
 
     const loadPlugin = async (opts: {root: string, type: string, config?: IConfig, name?: string, tag?: string}) => {
       this.debug('loading plugin', opts.name || opts.root)
@@ -80,8 +80,8 @@ export default class Engine implements IEngine {
           cli.warn(err)
         }
       }
-      if (_.isArray(pjson.dxcli.plugins)) {
-        const promises = pjson.dxcli.plugins.map(p => loadPlugin({root: config.root, type, name: p}).catch(cli.warn))
+      if (_.isArray(pjson.anycli.plugins)) {
+        const promises = pjson.anycli.plugins.map(p => loadPlugin({root: config.root, type, name: p}).catch(cli.warn))
         plugin.plugins = _(await Promise.all(promises)).compact().flatMap().value() as IPlugin[]
       }
 
@@ -180,7 +180,7 @@ export default class Engine implements IEngine {
     }
     const lastUpdated = await getLastUpdated()
 
-    const debug = require('debug')(['@dxcli/load', plugin.name].join(':'))
+    const debug = require('debug')(['@anycli/load', plugin.name].join(':'))
     const cacheFile = path.join(plugin.config.cacheDir, 'commands', plugin.type, `${plugin.name}.json`)
     let cacheKey = [plugin.config.version, plugin.version]
     if (lastUpdated) cacheKey.push(lastUpdated.toISOString())

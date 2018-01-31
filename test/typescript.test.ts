@@ -1,4 +1,4 @@
-import {IEngine, read} from '@dxcli/config'
+import {IEngine, read} from '@anycli/config'
 import {expect, fancy} from 'fancy-test'
 import * as fs from 'fs-extra'
 import * as path from 'path'

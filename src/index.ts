@@ -1,5 +1,5 @@
-import CommandBase from '@dxcli/command'
-import {ICommandOptions, IEngine, read} from '@dxcli/config'
+import CommandBase from '@anycli/command'
+import {ICommandOptions, IEngine, read} from '@anycli/config'
 import cli from 'cli-ux'
 
 import Engine from './engine'

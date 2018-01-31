@@ -1,8 +1,8 @@
-import ManifestFile from '@dxcli/manifest-file'
+import ManifestFile from '@anycli/manifest-file'
 
 export default class PluginCache<T> extends ManifestFile {
   constructor(public file: string, public cacheKey: string, public name: string) {
-    super(['@dxcli/load', name].join(':'), file)
+    super(['@anycli/load', name].join(':'), file)
     this.type = 'cache'
     this.debug('file: %s cacheKey: %s', this.file, this.cacheKey)
   }

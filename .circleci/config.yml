@@ -40,7 +40,7 @@ jobs:
 
 workflows:
   version: 2
-  "@dxcli/engine":
+  "@anycli/engine":
     jobs:
       - node-latest
       - node-8

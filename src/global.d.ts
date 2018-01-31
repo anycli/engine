@@ -2,7 +2,7 @@
 
 declare namespace NodeJS {
   interface Global {
-    dxcli: {
+    anycli: {
       config: any
     }
   }

@@ -6,7 +6,7 @@ const pjson = require('../package.json')
 
 describe('CLI', () => {
   describe('version', () => {
-    const stdout = `@dxcli/engine/${pjson.version} (${process.platform}-${process.arch}) node-${process.version}\n`
+    const stdout = `@anycli/engine/${pjson.version} (${process.platform}-${process.arch}) node-${process.version}\n`
 
     fancy
     .stdout()
