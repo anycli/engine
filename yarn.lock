@@ -2,9 +2,9 @@
 # yarn lockfile v1
 
 
-"@anycli/command@^0.2.11":
-  version "0.2.11"
-  resolved "https://registry.yarnpkg.com/@anycli/command/-/command-0.2.11.tgz#b66f77ab8c001bb038295d489e85c9530eb87a97"
+"@anycli/command@^0.2.12":
+  version "0.2.12"
+  resolved "https://registry.yarnpkg.com/@anycli/command/-/command-0.2.12.tgz#650e481c483bad917dcc31733a4c6f6ed1ff938e"
   dependencies:
     "@anycli/parser" "^0.1.1"
     debug "^3.1.0"
@@ -278,17 +278,17 @@
   dependencies:
     "@types/glob" "*"
 
-"@types/lodash@^4.14.98":
-  version "4.14.98"
-  resolved "https://registry.yarnpkg.com/@types/lodash/-/lodash-4.14.98.tgz#aaf012ae443e657e7885e605a4c1b340db160609"
+"@types/lodash@^4.14.99":
+  version "4.14.99"
+  resolved "https://registry.yarnpkg.com/@types/lodash/-/lodash-4.14.99.tgz#e6e10c0a4cc16c7409b3181f1e66880d2fb7d4dc"
 
 "@types/minimatch@*":
   version "3.0.3"
   resolved "https://registry.yarnpkg.com/@types/minimatch/-/minimatch-3.0.3.tgz#3dca0e3f33b200fc7d1139c0cd96c1268cadfd9d"
 
-"@types/mocha@^2.2.47":
-  version "2.2.47"
-  resolved "https://registry.yarnpkg.com/@types/mocha/-/mocha-2.2.47.tgz#30bbd880834d4af0f609025f282a69b8d4458f06"
+"@types/mocha@^2.2.48":
+  version "2.2.48"
+  resolved "https://registry.yarnpkg.com/@types/mocha/-/mocha-2.2.48.tgz#3523b126a0b049482e1c3c11877460f76622ffab"
 
 "@types/nock@^9.1.2":
   version "9.1.2"
