@@ -65,17 +65,18 @@ export default class Engine implements IEngine {
       }
       if (config.pluginsModule) {
         try {
-          let plugins
-          let fetch = (d: string) => undefault(require(d))(config, loadPlugin)
+          let roots
+          let fetch = (d: string) => undefault(require(d))(config)
           if (config.pluginsModuleTS) {
             try {
-              plugins = await fetch(config.pluginsModuleTS)
+              roots = await fetch(config.pluginsModuleTS)
             } catch (err) {
               cli.warn(err)
             }
           }
-          if (!plugins) plugins = await fetch(config.pluginsModule)
-          plugin.plugins = plugins
+          if (!roots) roots = await fetch(config.pluginsModule)
+          const promises = roots.map((r: any) => loadPlugin(r).catch(cli.warn))
+          plugin.plugins = await Promise.all(promises) as any
         } catch (err) {
           cli.warn(err)
         }
