@@ -15,12 +15,12 @@ export interface LoadOptions {
 }
 
 export default class Engine implements IEngine {
-  public config: IConfig
-  private _plugins: IPlugin[]
+  public config!: IConfig
+  private _plugins!: IPlugin[]
   private readonly _commands: ICachedCommand[] = []
   private readonly _topics: ITopic[] = []
   private readonly _hooks: {[k: string]: string[]} = {}
-  private rootPlugin: IPlugin
+  private rootPlugin!: IPlugin
   private debug: any
 
   get plugins(): IPlugin[] { return this._plugins }
