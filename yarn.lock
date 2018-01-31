@@ -32,9 +32,9 @@
     lodash "^4.17.4"
     rwlockfile "^2.0.21"
 
-"@anycli/not-found@^0.1.2":
-  version "0.1.2"
-  resolved "https://registry.yarnpkg.com/@anycli/not-found/-/not-found-0.1.2.tgz#48c67e68bdec6991e47c27cfca7f5eb21909c70e"
+"@anycli/not-found@^0.1.4":
+  version "0.1.4"
+  resolved "https://registry.yarnpkg.com/@anycli/not-found/-/not-found-0.1.4.tgz#c52a75469725769c2187cf8f230efa21e8dac80e"
   dependencies:
     "@anycli/command" "^0.2.9"
     "@heroku-cli/color" "^1.1.1"

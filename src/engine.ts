@@ -91,7 +91,7 @@ export default class Engine implements IEngine {
 
     function getAllPlugins(plugin: IPlugin): IPlugin[] {
       let plugins = [plugin]
-      for (let p of plugin.plugins) {
+      for (let p of plugin.plugins || []) {
         plugins.push(...getAllPlugins(p))
       }
       return plugins

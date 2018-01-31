@@ -15,7 +15,7 @@
   "devDependencies": {
     "@anycli/command": "^0.2.8",
     "@anycli/config": "^0.1.41",
-    "@anycli/not-found": "^0.1.2",
+    "@anycli/not-found": "^0.1.4",
     "@anycli/tslint": "^0.1.3",
     "@anycli/version": "^0.1.14",
     "@commitlint/cli": "^6.0.2",
