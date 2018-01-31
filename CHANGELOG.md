@@ -1,3 +1,11 @@
+<a name="0.1.35"></a>
+## [0.1.35](https://github.com/anycli/engine/compare/066748c681152308859e4bfacac0c30abd197cd6...v0.1.35) (2018-01-31)
+
+
+### Bug Fixes
+
+* updated command ([7870eba](https://github.com/anycli/engine/commit/7870eba))
+
 <a name="0.1.34"></a>
 ## [0.1.34](https://github.com/anycli/engine/compare/5837220359df4dd2ed7bf45fcd26c753931e5e71...v0.1.34) (2018-01-31)
 
