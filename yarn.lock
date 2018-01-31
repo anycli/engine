@@ -22,9 +22,9 @@
     lodash "^4.17.4"
     read-pkg "^3.0.0"
 
-"@anycli/manifest-file@^0.1.0":
-  version "0.1.1"
-  resolved "https://registry.yarnpkg.com/@anycli/manifest-file/-/manifest-file-0.1.1.tgz#b05f983c4b90e46d9f30ea3f023a409cfdda1232"
+"@anycli/manifest-file@^0.2.0":
+  version "0.2.0"
+  resolved "https://registry.yarnpkg.com/@anycli/manifest-file/-/manifest-file-0.2.0.tgz#f9f70fd2afb44178fe907f2a35ad8746eeb1ee97"
   dependencies:
     debug "^3.1.0"
     fs-extra "^5.0.0"
