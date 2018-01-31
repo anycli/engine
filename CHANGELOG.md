@@ -1,3 +1,11 @@
+<a name="0.1.34"></a>
+## [0.1.34](https://github.com/anycli/engine/compare/5837220359df4dd2ed7bf45fcd26c753931e5e71...v0.1.34) (2018-01-31)
+
+
+### Bug Fixes
+
+* remove peer deps ([066748c](https://github.com/anycli/engine/commit/066748c))
+
 <a name="0.1.33"></a>
 ## [0.1.33](https://github.com/anycli/engine/compare/cf7c3d78536d90687cd768c9d1179d84930aa53e...v0.1.33) (2018-01-31)
 
