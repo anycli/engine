@@ -1,3 +1,11 @@
+<a name="0.1.32"></a>
+## [0.1.32](https://github.com/anycli/engine/compare/83405dd251f4afdd5a307cc26469866c1155c6c6...v0.1.32) (2018-01-31)
+
+
+### Bug Fixes
+
+* fixed run command ([cf7c3d7](https://github.com/anycli/engine/commit/cf7c3d7))
+
 <a name="0.1.31"></a>
 ## [0.1.31](https://github.com/anycli/engine/compare/2149ec89807defbe5a0bb77c4735722373e705e3...v0.1.31) (2018-01-31)
 
