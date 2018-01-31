@@ -74,7 +74,7 @@ export default class Engine implements IEngine {
       if (config.pluginsModule) {
         try {
           let roots
-          let fetch = (d: string) => undefault(require(d))(config)
+          let fetch = (d: string) => undefault(require(d))(this.config)
           if (config.pluginsModuleTS) {
             try {
               roots = await fetch(config.pluginsModuleTS)
