@@ -67,7 +67,7 @@ export default class Engine implements IEngine {
       if (opts.loadDevPlugins && _.isArray(config.pjson.anycli.devPlugins)) {
         const devPlugins = config.pjson.anycli.devPlugins
         this.debug('loading dev plugins', devPlugins)
-        const promises = devPlugins.map(p => loadPlugin({root: config.root, type, name: p}).catch(cli.warn))
+        const promises = devPlugins.map(p => loadPlugin({root: config.root, type: 'dev', name: p}).catch(cli.warn))
         plugin.plugins.push(..._(await Promise.all(promises)).compact().flatMap().value() as IPlugin[])
       }
 
