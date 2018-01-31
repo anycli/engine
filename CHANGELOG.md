@@ -1,3 +1,11 @@
+<a name="0.1.24"></a>
+## [0.1.24](https://github.com/anycli/engine/compare/8605644f501141bd5d55aa1bc462fb3d0e203c66...v0.1.24) (2018-01-31)
+
+
+### Bug Fixes
+
+* anycli rename ([2dcf73d](https://github.com/anycli/engine/commit/2dcf73d))
+
 <a name="0.1.23"></a>
 ## [0.1.23](https://github.com/dxcli/engine/compare/8c89e9f2fc2c374133f105b8c73e7f3b6466199c...v0.1.23) (2018-01-30)
 
