@@ -1,3 +1,11 @@
+<a name="0.1.29"></a>
+## [0.1.29](https://github.com/anycli/engine/compare/d441f0ec3466786513beb76793aa388b1947ad3d...v0.1.29) (2018-01-31)
+
+
+### Bug Fixes
+
+* uniq commandIDs ([1ebfdf6](https://github.com/anycli/engine/commit/1ebfdf6))
+
 <a name="0.1.28"></a>
 ## [0.1.28](https://github.com/anycli/engine/compare/b5e21aad692559f3ce1dbd7161de8ebac4ad9925...v0.1.28) (2018-01-31)
 
