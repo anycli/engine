@@ -39,7 +39,7 @@ export default class Engine implements IEngine {
 
     this.debug = require('debug')(['@anycli/engine', this.config.name].join(':'))
 
-    const loadPlugin = async (opts: {root: string, type: string, config?: IConfig, name?: string, tag?: string}) => {
+    const loadPlugin = async (opts: {root: string, type: string, config?: IConfig, name?: string, tag?: string, loadDevPlugins?: boolean}) => {
       this.debug('loading plugin', opts.name || opts.root)
       const config = opts.config || await read(opts)
       const pjson = config.pjson
@@ -63,6 +63,14 @@ export default class Engine implements IEngine {
       if (config.pluginsModuleTS || config.hooksTS || config.commandsDirTS) {
         registerTSNode(this.debug, config.root)
       }
+
+      if (opts.loadDevPlugins && _.isArray(config.pjson.anycli.devPlugins)) {
+        const devPlugins = config.pjson.anycli.devPlugins
+        this.debug('loading dev plugins', devPlugins)
+        const promises = devPlugins.map(p => loadPlugin({root: config.root, type, name: p}).catch(cli.warn))
+        plugin.plugins.push(..._(await Promise.all(promises)).compact().flatMap().value() as IPlugin[])
+      }
+
       if (config.pluginsModule) {
         try {
           let roots
@@ -76,19 +84,19 @@ export default class Engine implements IEngine {
           }
           if (!roots) roots = await fetch(config.pluginsModule)
           const promises = roots.map((r: any) => loadPlugin(r).catch(cli.warn))
-          plugin.plugins = await Promise.all(promises) as any
+          plugin.plugins.push(...await Promise.all(promises) as any)
         } catch (err) {
           cli.warn(err)
         }
       }
       if (_.isArray(pjson.anycli.plugins)) {
         const promises = pjson.anycli.plugins.map(p => loadPlugin({root: config.root, type, name: p}).catch(cli.warn))
-        plugin.plugins = _(await Promise.all(promises)).compact().flatMap().value() as IPlugin[]
+        plugin.plugins.push(..._(await Promise.all(promises)).compact().flatMap().value() as IPlugin[])
       }
 
       return plugin
     }
-    this.rootPlugin = await loadPlugin({type: 'core', root: config.root})
+    this.rootPlugin = await loadPlugin({type: 'core', root: config.root, loadDevPlugins: true})
 
     function getAllPlugins(plugin: IPlugin): IPlugin[] {
       let plugins = [plugin]
@@ -182,8 +190,8 @@ export default class Engine implements IEngine {
     const lastUpdated = await getLastUpdated()
 
     const debug = require('debug')(['@anycli/load', plugin.name].join(':'))
-    const cacheFile = path.join(plugin.config.cacheDir, 'commands', plugin.type, `${plugin.name}.json`)
-    let cacheKey = [plugin.config.version, plugin.version]
+    const cacheFile = path.join(this.config.cacheDir, 'commands', plugin.type, `${plugin.name}.json`)
+    let cacheKey = [this.config.version, plugin.version]
     if (lastUpdated) cacheKey.push(lastUpdated.toISOString())
     const cache = new Cache<ICachedCommand[]>(cacheFile, cacheKey.join(':'), plugin.name)
 
