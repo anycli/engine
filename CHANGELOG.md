@@ -1,3 +1,11 @@
+<a name="0.1.28"></a>
+## [0.1.28](https://github.com/anycli/engine/compare/b5e21aad692559f3ce1dbd7161de8ebac4ad9925...v0.1.28) (2018-01-31)
+
+
+### Bug Fixes
+
+* make sure we pass CLI config to plugin loader ([d441f0e](https://github.com/anycli/engine/commit/d441f0e))
+
 <a name="0.1.27"></a>
 ## [0.1.27](https://github.com/anycli/engine/compare/c883303480f40f5c2cd4f01bcc04c5628a728ef6...v0.1.27) (2018-01-31)
 
