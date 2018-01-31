@@ -1,19 +1,14 @@
 import CommandBase from '@anycli/command'
-import * as Config from '@anycli/config'
 
 import Engine from './engine'
 
 export default class Command extends CommandBase {
   static parse = false
 
-  engine: Config.IEngine
-
-  constructor(args: string[], opts: Config.ICommandOptions) {
-    super(args, opts)
-    this.engine = this.config.engine = new Engine()
-  }
+  engine = new Engine()
 
   async run() {
+    this.config.engine = this.engine
     await this.engine.load(this.config)
     const id = this.argv[0]
     await this.engine.runHook('init', {id})
