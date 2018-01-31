@@ -1,3 +1,11 @@
+<a name="0.1.26"></a>
+## [0.1.26](https://github.com/anycli/engine/compare/b4a771ab66bd2ed65512ac3d2d9b1232e88fbc52...v0.1.26) (2018-01-31)
+
+
+### Bug Fixes
+
+* fixed user plugin loading ([c883303](https://github.com/anycli/engine/commit/c883303))
+
 <a name="0.1.25"></a>
 ## [0.1.25](https://github.com/anycli/engine/compare/2dcf73d1099d4411c1219336046652a8543159aa...v0.1.25) (2018-01-31)
 
