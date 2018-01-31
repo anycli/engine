@@ -1,3 +1,11 @@
+<a name="0.1.31"></a>
+## [0.1.31](https://github.com/anycli/engine/compare/2149ec89807defbe5a0bb77c4735722373e705e3...v0.1.31) (2018-01-31)
+
+
+### Bug Fixes
+
+* fixed module.parent ([83405dd](https://github.com/anycli/engine/commit/83405dd))
+
 <a name="0.1.30"></a>
 ## [0.1.30](https://github.com/anycli/engine/compare/1ebfdf6a39b7ed4ad3d14803684ebaca2b36b287...v0.1.30) (2018-01-31)
 
