@@ -1,3 +1,11 @@
+<a name="0.1.25"></a>
+## [0.1.25](https://github.com/anycli/engine/compare/2dcf73d1099d4411c1219336046652a8543159aa...v0.1.25) (2018-01-31)
+
+
+### Bug Fixes
+
+* fixed when no plugins ([b4a771a](https://github.com/anycli/engine/commit/b4a771a))
+
 <a name="0.1.24"></a>
 ## [0.1.24](https://github.com/anycli/engine/compare/8605644f501141bd5d55aa1bc462fb3d0e203c66...v0.1.24) (2018-01-31)
 
