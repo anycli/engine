@@ -11,7 +11,7 @@ export default class Command extends CommandBase {
     try {
       let config
       if (Config.isIConfig(opts)) config = opts
-      else config = await Config.read({root: opts.root || module.parent!.filename})
+      else config = await Config.read({root: opts.root || module.parent!.parent!.filename})
       cmd = new this(argv, config)
       return await cmd.run()
     } finally {
