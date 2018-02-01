@@ -7,7 +7,8 @@ export default class Command extends CommandBase {
 
   async run() {
     await this.engine.load(this.config)
-    const id = this.argv[0]
+    let id = this.argv[0]
+    if (!id) id = 'help'
     await this.engine.runHook('init', {id})
     const cachedCommand = this.engine.findCommand(id)
     if (!cachedCommand) return this.commandNotFound(id)
