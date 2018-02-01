@@ -13,7 +13,7 @@
   },
   "bugs": "https://github.com/anycli/engine/issues",
   "dependencies": {
-    "@anycli/manifest-file": "^0.3.0",
+    "@anycli/manifest-file": "^0.3.1",
     "cli-ux": "^3.3.12",
     "debug": "^3.1.0",
     "fs-extra": "^5.0.0",
@@ -25,7 +25,7 @@
     "@anycli/config": "^0.2.10",
     "@anycli/help": "^0.3.4",
     "@anycli/not-found": "^0.1.9",
-    "@anycli/plugins": "^0.2.1",
+    "@anycli/plugins": "^0.2.2",
     "@anycli/tslint": "^0.2.1",
     "@anycli/version": "^0.1.19",
     "@commitlint/cli": "^6.0.5",

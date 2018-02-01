@@ -58,9 +58,9 @@
     widest-line "^2.0.0"
     wrap-ansi "^3.0.1"
 
-"@anycli/manifest-file@^0.2.0":
-  version "0.2.0"
-  resolved "https://registry.yarnpkg.com/@anycli/manifest-file/-/manifest-file-0.2.0.tgz#f9f70fd2afb44178fe907f2a35ad8746eeb1ee97"
+"@anycli/manifest-file@^0.3.0":
+  version "0.3.0"
+  resolved "https://registry.yarnpkg.com/@anycli/manifest-file/-/manifest-file-0.3.0.tgz#544fa71b797106e1471c290fc6a6c99d25254a40"
   dependencies:
     debug "^3.1.0"
     fs-extra "^5.0.0"
@@ -68,9 +68,9 @@
     lodash "^4.17.4"
     rwlockfile "^2.0.21"
 
-"@anycli/manifest-file@^0.3.0":
-  version "0.3.0"
-  resolved "https://registry.yarnpkg.com/@anycli/manifest-file/-/manifest-file-0.3.0.tgz#544fa71b797106e1471c290fc6a6c99d25254a40"
+"@anycli/manifest-file@^0.3.1":
+  version "0.3.1"
+  resolved "https://registry.yarnpkg.com/@anycli/manifest-file/-/manifest-file-0.3.1.tgz#21151de74b18900c08bf522d0a9a134ad387d069"
   dependencies:
     debug "^3.1.0"
     fs-extra "^5.0.0"
@@ -103,14 +103,14 @@
     chalk "^2.3.0"
     lodash "^4.17.4"
 
-"@anycli/plugins@^0.2.1":
-  version "0.2.1"
-  resolved "https://registry.yarnpkg.com/@anycli/plugins/-/plugins-0.2.1.tgz#16fe90189a6ddb495fc23e5ef8db050193420113"
+"@anycli/plugins@^0.2.2":
+  version "0.2.2"
+  resolved "https://registry.yarnpkg.com/@anycli/plugins/-/plugins-0.2.2.tgz#e540fb7fcffadf559b705cf7ae0940cb21478c77"
   dependencies:
-    "@anycli/command" "^0.2.22"
-    "@anycli/manifest-file" "^0.2.0"
+    "@anycli/command" "^0.3.2"
+    "@anycli/manifest-file" "^0.3.0"
     "@heroku-cli/color" "^1.1.1"
-    cli-ux "^3.3.10"
+    cli-ux "^3.3.12"
     debug "^3.1.0"
     fs-extra "^5.0.0"
     http-call "^5.0.2"
