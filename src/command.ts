@@ -6,7 +6,6 @@ export default class Command extends CommandBase {
   engine = new Engine()
 
   async run() {
-    this.config.engine = this.engine
     await this.engine.load(this.config)
     const id = this.argv[0]
     await this.engine.runHook('init', {id})

@@ -31,7 +31,8 @@ export default class Engine implements IEngine {
   get rootCommands(): ICachedCommand[] { return this.commands.filter(c => !c.id.includes(':')) }
 
   async load(config: IConfig, loadOptions: LoadOptions = {}) {
-    this.config = {...config, engine: this}
+    this.config = config
+    this.config.engine = this
 
     // set global config for plugins to use in any part of their loading
     if (!global.anycli) global.anycli = {} as any
