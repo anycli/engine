@@ -1,3 +1,11 @@
+<a name="0.1.42"></a>
+## [0.1.42](https://github.com/anycli/engine/compare/05069b34e7517d98499880cab3a9124586cbcb93...v0.1.42) (2018-02-01)
+
+
+### Bug Fixes
+
+* cache fixes ([e8aa165](https://github.com/anycli/engine/commit/e8aa165))
+
 <a name="0.1.41"></a>
 ## [0.1.41](https://github.com/anycli/engine/compare/0d042a72fb3ce0f7776abeb341dfb909db90656a...v0.1.41) (2018-02-01)
 
