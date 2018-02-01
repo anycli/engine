@@ -1,3 +1,11 @@
+<a name="0.1.37"></a>
+## [0.1.37](https://github.com/anycli/engine/compare/148e0fe8e298f08b76313cfc1f26c6acbbde1354...v0.1.37) (2018-02-01)
+
+
+### Bug Fixes
+
+* move command/config to dev ([077cc32](https://github.com/anycli/engine/commit/077cc32))
+
 <a name="0.1.36"></a>
 ## [0.1.36](https://github.com/anycli/engine/compare/7870ebafee4a8dddba2f9e39428af9d7b8a68e0b...v0.1.36) (2018-02-01)
 
