@@ -1,3 +1,11 @@
+<a name="0.1.39"></a>
+## [0.1.39](https://github.com/anycli/engine/compare/fb1918f6b0f45e82bce945469f6247da432ec8e2...v0.1.39) (2018-02-01)
+
+
+### Bug Fixes
+
+* skip cache if locked ([2b80091](https://github.com/anycli/engine/commit/2b80091))
+
 <a name="0.1.38"></a>
 ## [0.1.38](https://github.com/anycli/engine/compare/077cc327f8e4d222ee889bc26a45247e109cf8e9...v0.1.38) (2018-02-01)
 
