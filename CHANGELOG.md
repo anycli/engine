@@ -1,3 +1,11 @@
+<a name="0.1.38"></a>
+## [0.1.38](https://github.com/anycli/engine/compare/077cc327f8e4d222ee889bc26a45247e109cf8e9...v0.1.38) (2018-02-01)
+
+
+### Bug Fixes
+
+* only set engine in engine itself ([fb1918f](https://github.com/anycli/engine/commit/fb1918f))
+
 <a name="0.1.37"></a>
 ## [0.1.37](https://github.com/anycli/engine/compare/148e0fe8e298f08b76313cfc1f26c6acbbde1354...v0.1.37) (2018-02-01)
 
