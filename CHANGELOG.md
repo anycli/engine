@@ -1,3 +1,11 @@
+<a name="0.1.40"></a>
+## [0.1.40](https://github.com/anycli/engine/compare/2b8009199dfa2fb25664c7fa78937d428c798d09...v0.1.40) (2018-02-01)
+
+
+### Bug Fixes
+
+* run help by default ([0d042a7](https://github.com/anycli/engine/commit/0d042a7))
+
 <a name="0.1.39"></a>
 ## [0.1.39](https://github.com/anycli/engine/compare/fb1918f6b0f45e82bce945469f6247da432ec8e2...v0.1.39) (2018-02-01)
 
