@@ -1,3 +1,11 @@
+<a name="0.1.41"></a>
+## [0.1.41](https://github.com/anycli/engine/compare/0d042a72fb3ce0f7776abeb341dfb909db90656a...v0.1.41) (2018-02-01)
+
+
+### Bug Fixes
+
+* bump manifest-file ([05069b3](https://github.com/anycli/engine/commit/05069b3))
+
 <a name="0.1.40"></a>
 ## [0.1.40](https://github.com/anycli/engine/compare/2b8009199dfa2fb25664c7fa78937d428c798d09...v0.1.40) (2018-02-01)
 
