@@ -10,10 +10,6 @@ import Cache from './cache'
 import {registerTSNode} from './typescript'
 import {undefault} from './util'
 
-export interface LoadOptions {
-  resetCache?: boolean
-}
-
 export default class Engine implements IEngine {
   public config!: IConfig
   private _plugins!: IPlugin[]
@@ -30,7 +26,7 @@ export default class Engine implements IEngine {
   get rootTopics(): ITopic[] { return this.topics.filter(t => !t.name.includes(':')) }
   get rootCommands(): ICachedCommand[] { return this.commands.filter(c => !c.id.includes(':')) }
 
-  async load(config: IConfig, loadOptions: LoadOptions = {}) {
+  async load(config: IConfig) {
     this.config = config
     this.config.engine = this
 
@@ -119,7 +115,7 @@ export default class Engine implements IEngine {
     }
 
     this._commands.push(..._(
-      await Promise.all(this.plugins.map(p => this.loadCommands(p, loadOptions)))
+      await Promise.all(this.plugins.map(p => this.getPluginCommands(p, true)))
     ).flatMap().value())
 
     // add missing topics from commands
@@ -163,7 +159,7 @@ export default class Engine implements IEngine {
     this.debug('finished hook', event)
   }
 
-  protected async loadCommands(plugin: IPlugin, loadOptions: LoadOptions): Promise<ICachedCommand[]> {
+  async getPluginCommands(plugin: IPlugin, useCache = false): Promise<ICachedCommand[]> {
     function getCached(c: ICommand): ICachedCommand {
       const opts = {plugin}
       if (c.convertToCached) return c.convertToCached(opts)
@@ -172,8 +168,7 @@ export default class Engine implements IEngine {
 
     const getLastUpdated = async (): Promise<Date | undefined> => {
       try {
-        if (loadOptions.resetCache) return new Date()
-        if (!await fs.pathExists(path.join(plugin.root, '.git'))) return
+        // if (!await fs.pathExists(path.join(plugin.root, '.git'))) return
         let files = await globby([`${plugin.root}/+(src|lib)/**/*.+(js|ts)`, '!**/*.+(d.ts|test.ts|test.js)'])
         let stats = await Promise.all(files.map(async f => {
           const stat = await fs.stat(f)
@@ -191,27 +186,8 @@ export default class Engine implements IEngine {
     const lastUpdated = await getLastUpdated()
 
     const debug = require('debug')(['@anycli/load', plugin.name].join(':'))
-    const cacheFile = path.join(this.config.cacheDir, 'commands', plugin.type, `${plugin.name}.json`)
-    let cacheKey = [this.config.version, plugin.version]
-    if (lastUpdated) cacheKey.push(lastUpdated.toISOString())
-    const cache = new Cache<ICachedCommand[]>(cacheFile, cacheKey.join(':'), plugin.name)
 
-    async function fetchFromDir(dir: string) {
-      async function fetchCommandIDs(): Promise<string[]> {
-        function idFromPath(file: string) {
-          const p = path.parse(file)
-          const topics = p.dir.split('/')
-          let command = p.name !== 'index' && p.name
-          return _([...topics, command]).compact().join(':')
-        }
-
-        debug(`loading IDs from ${dir}`)
-        const files = await globby(['**/*.+(js|ts)', '!**/*.+(d.ts|test.ts|test.js)'], {cwd: dir})
-        let ids = files.map(idFromPath)
-        debug('commandIDs dir: %s ids: %s', dir, ids.join(' '))
-        return ids
-      }
-
+    const fetchFromDir = async (dir: string) => {
       function findCommand(id: string): ICommand {
         function commandPath(id: string): string {
           return require.resolve(path.join(dir, ...id.split(':')))
@@ -223,7 +199,21 @@ export default class Engine implements IEngine {
         return c
       }
 
-      return (await cache.fetch('commands', async (): Promise<ICachedCommand[]> => {
+      const fetch = async (): Promise<ICachedCommand[]> => {
+        const fetchCommandIDs = async (): Promise<string[]> => {
+          function idFromPath(file: string) {
+            const p = path.parse(file)
+            const topics = p.dir.split('/')
+            let command = p.name !== 'index' && p.name
+            return _([...topics, command]).compact().join(':')
+          }
+
+          debug(`loading IDs from ${dir}`)
+          const files = await globby(['**/*.+(js|ts)', '!**/*.+(d.ts|test.ts|test.js)'], {cwd: dir})
+          let ids = files.map(idFromPath)
+          debug('commandIDs dir: %s ids: %s', dir, ids.join(' '))
+          return ids
+        }
         const commands = (await fetchCommandIDs())
           .map(id => {
             try {
@@ -232,11 +222,26 @@ export default class Engine implements IEngine {
             } catch (err) { cli.warn(err) }
           })
         return _.compact(commands)
-      }))
-        .map((cmd: ICachedCommand): ICachedCommand => ({
+      }
+
+      const rehydrate = (commands: ICachedCommand[]): ICachedCommand[] => {
+        return commands.map((cmd: ICachedCommand): ICachedCommand => ({
           ...cmd,
           load: async () => findCommand(cmd.id),
         }))
+      }
+
+      let commands
+      if (useCache) {
+        const cacheFile = path.join(this.config.cacheDir, 'commands', plugin.type, `${plugin.name}.json`)
+        let cacheKey = [this.config.version, plugin.version]
+        if (lastUpdated) cacheKey.push(lastUpdated.toISOString())
+        const cache = new Cache<ICachedCommand[]>(cacheFile, cacheKey.join(':'), plugin.name)
+        commands = await cache.fetch('commands', fetch)
+      } else {
+        commands = await fetch()
+      }
+      return rehydrate(commands)
     }
 
     let commands: ICachedCommand[] = []
