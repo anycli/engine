@@ -2,20 +2,13 @@
 # yarn lockfile v1
 
 
-"@anycli/command@^0.2.17":
-  version "0.2.17"
-  resolved "https://registry.yarnpkg.com/@anycli/command/-/command-0.2.17.tgz#13e605bea70168982c62ba2542260c65237c164a"
+"@anycli/command@^0.2.19", "@anycli/command@^0.2.20":
+  version "0.2.20"
+  resolved "https://registry.yarnpkg.com/@anycli/command/-/command-0.2.20.tgz#18f9c6f25a7871827af454ef05f62fd5d0b61c15"
   dependencies:
-    "@anycli/parser" "^0.1.4"
-    debug "^3.1.0"
-    lodash "^4.17.4"
-    tslib "^1.9.0"
-
-"@anycli/command@^0.2.18":
-  version "0.2.18"
-  resolved "https://registry.yarnpkg.com/@anycli/command/-/command-0.2.18.tgz#85e8de82f8f4091104cf8182781745d5492714e7"
-  dependencies:
-    "@anycli/parser" "^1.0.0"
+    "@anycli/config" "^0.2.3"
+    "@anycli/parser" "^3.0.1"
+    cli-ux "^3.3.10"
     debug "^3.1.0"
     lodash "^4.17.4"
     tslib "^1.9.0"
@@ -75,11 +68,11 @@
     lodash "^4.17.4"
     rwlockfile "^2.0.21"
 
-"@anycli/not-found@^0.1.7":
-  version "0.1.7"
-  resolved "https://registry.yarnpkg.com/@anycli/not-found/-/not-found-0.1.7.tgz#4ea0733e0727365258df733ec9f5b0b3dc44bf78"
+"@anycli/not-found@^0.1.8":
+  version "0.1.8"
+  resolved "https://registry.yarnpkg.com/@anycli/not-found/-/not-found-0.1.8.tgz#9f3d0ca32fde3e874ea242cf9f0bb874dd7fa810"
   dependencies:
-    "@anycli/command" "^0.2.17"
+    "@anycli/command" "^0.2.19"
     "@anycli/config" "^0.2.3"
     "@heroku-cli/color" "^1.1.1"
     cli-ux "^3.3.10"
@@ -93,17 +86,9 @@
     chalk "^2.3.0"
     lodash "^4.17.4"
 
-"@anycli/parser@^0.1.4":
-  version "0.1.4"
-  resolved "https://registry.yarnpkg.com/@anycli/parser/-/parser-0.1.4.tgz#f807106d99bf09fdb712214ad19c4af48c1b3ce8"
-  dependencies:
-    "@anycli/screen" "^0.0.3"
-    chalk "^2.3.0"
-    lodash "^4.17.4"
-
-"@anycli/parser@^1.0.0":
-  version "1.0.0"
-  resolved "https://registry.yarnpkg.com/@anycli/parser/-/parser-1.0.0.tgz#0ae14d75c3f66904c962ad75361d8d628509348a"
+"@anycli/parser@^3.0.1":
+  version "3.0.1"
+  resolved "https://registry.yarnpkg.com/@anycli/parser/-/parser-3.0.1.tgz#24a2bca4abe1e1ffb91b0210b709b3ec15ee4ea4"
   dependencies:
     "@anycli/screen" "^0.0.3"
     chalk "^2.3.0"
@@ -136,11 +121,11 @@
     tslint "^5.9.1"
     tslint-xo "^0.6.0"
 
-"@anycli/version@^0.1.17":
-  version "0.1.17"
-  resolved "https://registry.yarnpkg.com/@anycli/version/-/version-0.1.17.tgz#1c9526d44bba6da00253c0257e299803358bc109"
+"@anycli/version@^0.1.19":
+  version "0.1.19"
+  resolved "https://registry.yarnpkg.com/@anycli/version/-/version-0.1.19.tgz#4464c3c831e0dc1d0ef92375167ec9af923b66c3"
   dependencies:
-    "@anycli/command" "^0.2.17"
+    "@anycli/command" "^0.2.19"
     "@anycli/config" "^0.2.3"
     cli-ux "^3.3.10"
 
