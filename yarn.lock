@@ -32,11 +32,10 @@
     lodash "^4.17.4"
     tslib "^1.9.0"
 
-"@anycli/config@^0.3.2":
-  version "0.3.2"
-  resolved "https://registry.npmjs.org/@anycli/config/-/config-0.3.2.tgz#61e4da1631de63d5c39ad7d2c4382785e0017b3f"
+"@anycli/config@^0.3.3":
+  version "0.3.3"
+  resolved "https://registry.npmjs.org/@anycli/config/-/config-0.3.3.tgz#6a497fe7f70e6ba9199b399a20b143df25a22558"
   dependencies:
-    cli-ux "^3.3.13"
     debug "^3.1.0"
     fs-extra "^5.0.0"
     load-json-file "^4.0.0"
@@ -798,9 +797,9 @@ flat-cache@^1.2.1:
     graceful-fs "^4.1.2"
     write "^0.2.1"
 
-fs-extra-debug@^1.0.1:
-  version "1.0.1"
-  resolved "https://registry.npmjs.org/fs-extra-debug/-/fs-extra-debug-1.0.1.tgz#d42141210afffa35da3b168dd92f52c64ba5f23c"
+fs-extra-debug@^1.0.4:
+  version "1.0.4"
+  resolved "https://registry.npmjs.org/fs-extra-debug/-/fs-extra-debug-1.0.4.tgz#5efa3bd2a7ef6753fa79cfd810aab36445fa4788"
   dependencies:
     debug "^3.1.0"
 

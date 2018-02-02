@@ -134,6 +134,8 @@ export default class Engine implements IEngine {
       plugins.push(..._(await Promise.all(promises)).compact().flatMap().value() as IPlugin[])
     }
 
+    const manifest = await this.getPluginManifest(config, opts)
+
     return {
       name,
       version,
@@ -144,7 +146,8 @@ export default class Engine implements IEngine {
       hooks: config.hooksTS || config.hooks,
       topics: [],
       plugins,
-      manifest: await this.getPluginManifest(config, opts),
+      manifest,
+      valid: true,
     }
   }
 
