@@ -2,32 +2,12 @@
 # yarn lockfile v1
 
 
-"@anycli/command@^0.2.19", "@anycli/command@^0.2.22":
+"@anycli/command@^0.2.19":
   version "0.2.22"
   resolved "https://registry.yarnpkg.com/@anycli/command/-/command-0.2.22.tgz#486b36d2916b28f08b9aedb129a758a4da2f542a"
   dependencies:
     "@anycli/parser" "^3.0.2"
     cli-ux "^3.3.10"
-    debug "^3.1.0"
-    lodash "^4.17.4"
-    tslib "^1.9.0"
-
-"@anycli/command@^0.3.1":
-  version "0.3.3"
-  resolved "https://registry.yarnpkg.com/@anycli/command/-/command-0.3.3.tgz#38f2d56fee0c18ad528c3a42d90ae9c97b17d652"
-  dependencies:
-    "@anycli/parser" "^3.0.4"
-    cli-ux "^3.3.12"
-    debug "^3.1.0"
-    lodash "^4.17.4"
-    tslib "^1.9.0"
-
-"@anycli/command@^0.3.2":
-  version "0.3.2"
-  resolved "https://registry.yarnpkg.com/@anycli/command/-/command-0.3.2.tgz#2dde4dafd3bc1bb2c2cb90a765821dc85053c401"
-  dependencies:
-    "@anycli/parser" "^3.0.4"
-    cli-ux "^3.3.12"
     debug "^3.1.0"
     lodash "^4.17.4"
     tslib "^1.9.0"
@@ -64,30 +44,6 @@
     lodash "^4.17.4"
     read-pkg "^3.0.0"
 
-"@anycli/help@^0.3.5":
-  version "0.3.5"
-  resolved "https://registry.yarnpkg.com/@anycli/help/-/help-0.3.5.tgz#5fc846214da0b2a760885fe42c133bfd2903d5ab"
-  dependencies:
-    "@anycli/command" "^0.3.1"
-    "@anycli/screen" "^0.0.3"
-    chalk "^2.3.0"
-    cli-ux "^3.3.12"
-    indent-string "^3.2.0"
-    lodash "^4.17.4"
-    string-width "^2.1.1"
-    widest-line "^2.0.0"
-    wrap-ansi "^3.0.1"
-
-"@anycli/manifest-file@^0.3.0":
-  version "0.3.0"
-  resolved "https://registry.yarnpkg.com/@anycli/manifest-file/-/manifest-file-0.3.0.tgz#544fa71b797106e1471c290fc6a6c99d25254a40"
-  dependencies:
-    debug "^3.1.0"
-    fs-extra "^5.0.0"
-    load-json-file "^4.0.0"
-    lodash "^4.17.4"
-    rwlockfile "^2.0.21"
-
 "@anycli/manifest-file@^0.3.8":
   version "0.3.8"
   resolved "https://registry.yarnpkg.com/@anycli/manifest-file/-/manifest-file-0.3.8.tgz#d175a27e1d2009a14080c7e8dd808c1c856de468"
@@ -98,19 +54,6 @@
     load-json-file "^4.0.0"
     lodash "^4.17.4"
     proper-lockfile "^3.0.2"
-
-"@anycli/not-found@^0.1.9":
-  version "0.1.9"
-  resolved "https://registry.yarnpkg.com/@anycli/not-found/-/not-found-0.1.9.tgz#73c316e04fb495fad2a7807b85f10e2450a060a6"
-  dependencies:
-    "@anycli/command" "^0.2.22"
-    "@heroku-cli/color" "^1.1.1"
-    cli-ux "^3.3.10"
-    string-similarity "^1.2.0"
-
-"@anycli/nyc-config@0":
-  version "0.0.5"
-  resolved "https://registry.yarnpkg.com/@anycli/nyc-config/-/nyc-config-0.0.5.tgz#e38af7fb9437546fb9f5ef9ecf85c724b118d0dc"
 
 "@anycli/parser@^3.0.2":
   version "3.0.2"
@@ -128,13 +71,37 @@
     chalk "^2.3.0"
     lodash "^4.17.4"
 
-"@anycli/plugins@^0.2.2":
-  version "0.2.2"
-  resolved "https://registry.yarnpkg.com/@anycli/plugins/-/plugins-0.2.2.tgz#e540fb7fcffadf559b705cf7ae0940cb21478c77"
+"@anycli/plugin-help@^0.3.6":
+  version "0.3.6"
+  resolved "https://registry.yarnpkg.com/@anycli/plugin-help/-/plugin-help-0.3.6.tgz#f7f8aac308c0a91dfb5f7f0ca79c91d4585bc4d7"
   dependencies:
-    "@anycli/command" "^0.3.2"
-    "@anycli/manifest-file" "^0.3.0"
-    "@heroku-cli/color" "^1.1.1"
+    "@anycli/command" "^0.3.4"
+    "@anycli/screen" "^0.0.3"
+    chalk "^2.3.0"
+    cli-ux "^3.3.12"
+    indent-string "^3.2.0"
+    lodash "^4.17.4"
+    string-width "^2.1.1"
+    widest-line "^2.0.0"
+    wrap-ansi "^3.0.1"
+
+"@anycli/plugin-not-found@^0.1.10":
+  version "0.1.10"
+  resolved "https://registry.yarnpkg.com/@anycli/plugin-not-found/-/plugin-not-found-0.1.10.tgz#3d99f748a7a025aaa89486b2eec08481fb7d6789"
+  dependencies:
+    "@anycli/command" "^0.3.4"
+    "@heroku-cli/color" "^1.1.3"
+    cli-ux "^3.3.12"
+    string-similarity "^1.2.0"
+
+"@anycli/plugin-plugins@^0.2.3":
+  version "0.2.3"
+  resolved "https://registry.yarnpkg.com/@anycli/plugin-plugins/-/plugin-plugins-0.2.3.tgz#75bd2ef541e87c0ce875f4b018cec6ed7cc9ebab"
+  dependencies:
+    "@anycli/command" "^0.3.4"
+    "@anycli/manifest-file" "^0.3.8"
+    "@heroku-cli/color" "^1.1.3"
+    chalk "^2.3.0"
     cli-ux "^3.3.12"
     debug "^3.1.0"
     fs-extra "^5.0.0"
@@ -143,6 +110,13 @@
     npm-run-path "^2.0.2"
     tslib "^1.9.0"
     yarn "^1.3.2"
+
+"@anycli/plugin-version@^0.1.19":
+  version "0.1.19"
+  resolved "https://registry.yarnpkg.com/@anycli/plugin-version/-/plugin-version-0.1.19.tgz#8a4e9b3e44acb810cb1db82db71bf9dc1048b297"
+  dependencies:
+    "@anycli/command" "^0.3.4"
+    cli-ux "^3.3.12"
 
 "@anycli/screen@^0.0.3":
   version "0.0.3"
@@ -163,9 +137,9 @@
     "@anycli/config" "^0.2.3"
     cli-ux "^3.3.10"
 
-"@heroku-cli/color@^1.1.1":
-  version "1.1.1"
-  resolved "https://registry.yarnpkg.com/@heroku-cli/color/-/color-1.1.1.tgz#a2c25239ff1196733a79cabc7a750cd46b96dc30"
+"@heroku-cli/color@^1.1.3":
+  version "1.1.3"
+  resolved "https://registry.yarnpkg.com/@heroku-cli/color/-/color-1.1.3.tgz#f5f3bb043c3c5c78888135a89633227cfca04b2b"
   dependencies:
     ansi-styles "^3.2.0"
     chalk "^2.3.0"
@@ -1020,12 +994,6 @@ is-path-inside@^1.0.0:
   dependencies:
     path-is-inside "^1.0.1"
 
-is-process-active@^1.0.1:
-  version "1.0.1"
-  resolved "https://registry.yarnpkg.com/is-process-active/-/is-process-active-1.0.1.tgz#63616541f447d84b71783cb2002360cf7e690b4f"
-  dependencies:
-    debug "^3.1.0"
-
 is-promise@^2.1.0:
   version "2.1.0"
   resolved "https://registry.yarnpkg.com/is-promise/-/is-promise-2.1.0.tgz#79a2a9ece7f096e80f36d2b2f3bc16c1ff4bf3fa"
@@ -1403,14 +1371,6 @@ run-async@^2.2.0:
   dependencies:
     is-promise "^2.1.0"
 
-rwlockfile@^2.0.21:
-  version "2.0.21"
-  resolved "https://registry.yarnpkg.com/rwlockfile/-/rwlockfile-2.0.21.tgz#c2eb13d77df18dbb268dcd28017df17d5a97f8a8"
-  dependencies:
-    fs-extra "^5.0.0"
-    is-process-active "^1.0.1"
-    uuid "^3.2.1"
-
 rx-lite-aggregates@^4.0.8:
   version "4.0.8"
   resolved "https://registry.yarnpkg.com/rx-lite-aggregates/-/rx-lite-aggregates-4.0.8.tgz#753b87a89a11c95467c4ac1626c4efc4e05c67be"
@@ -1725,10 +1685,6 @@ universalify@^0.1.0:
 util-deprecate@~1.0.1:
   version "1.0.2"
   resolved "https://registry.yarnpkg.com/util-deprecate/-/util-deprecate-1.0.2.tgz#450d4dc9fa70de732762fbd2d4a28981419a0ccf"
-
-uuid@^3.2.1:
-  version "3.2.1"
-  resolved "https://registry.yarnpkg.com/uuid/-/uuid-3.2.1.tgz#12c528bb9d58d0b9265d9a2f6f0fe8be17ff1f14"
 
 v8flags@^3.0.0:
   version "3.0.1"
