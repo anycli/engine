@@ -1,3 +1,11 @@
+<a name="0.1.48"></a>
+## [0.1.48](https://github.com/anycli/engine/compare/cdd8c41e134d3f02e014d2612382d28e5a210cb1...v0.1.48) (2018-02-02)
+
+
+### Bug Fixes
+
+* updated deps ([2521e84](https://github.com/anycli/engine/commit/2521e84))
+
 <a name="0.1.47"></a>
 ## [0.1.47](https://github.com/anycli/engine/compare/94a520bb103d606c2b9a6ad4d9f0ac8b6e4bec07...v0.1.47) (2018-02-02)
 
