@@ -21,9 +21,9 @@
     "lodash": "^4.17.4"
   },
   "devDependencies": {
-    "@anycli/command": "^0.3.4",
+    "@anycli/command": "^0.3.6",
     "@anycli/config": "^0.2.11",
-    "@anycli/plugin-help": "^0.3.6",
+    "@anycli/plugin-help": "^0.3.7",
     "@anycli/plugin-not-found": "^0.1.10",
     "@anycli/plugin-plugins": "^0.2.3",
     "@anycli/plugin-version": "^0.1.19",
