@@ -1,3 +1,11 @@
+<a name="0.1.44"></a>
+## [0.1.44](https://github.com/anycli/engine/compare/30cc72e9ae80a405daa3fbef6bb5ef80390de99a...v0.1.44) (2018-02-02)
+
+
+### Bug Fixes
+
+* updated manifest-file ([7305cda](https://github.com/anycli/engine/commit/7305cda))
+
 <a name="0.1.43"></a>
 ## [0.1.43](https://github.com/anycli/engine/compare/e8aa165ac3e11f39f3b192d0c35b41a0309b5538...v0.1.43) (2018-02-02)
 
