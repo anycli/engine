@@ -1,3 +1,11 @@
+<a name="0.3.1"></a>
+## [0.3.1](https://github.com/anycli/engine/compare/1e5a8ad108407c95be9077f9aa98d498b116e19e...v0.3.1) (2018-02-02)
+
+
+### Bug Fixes
+
+* read plugin cache if available ([01d90d9](https://github.com/anycli/engine/commit/01d90d9))
+
 <a name="0.3.0"></a>
 # [0.3.0](https://github.com/anycli/engine/compare/38f3f73a2a8dd9767ac50c5dc0860bf99e6e1b66...v0.3.0) (2018-02-02)
 
