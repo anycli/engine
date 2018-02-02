@@ -30,13 +30,9 @@ export default class Engine implements IEngine {
     this.config = config
     this.config.engine = this
 
-    // set global config for plugins to use in any part of their loading
-    if (!global.anycli) global.anycli = {} as any
-    if (!global.anycli.config) global.anycli.config = this.config
-
     this.debug = require('debug')(['@anycli/engine', this.config.name].join(':'))
 
-    this.rootPlugin = await this.loadPlugin({type: 'core', config, loadDevPlugins: true})
+    this.rootPlugin = await this.loadPlugin({type: 'core', config, loadDevPlugins: true, useCache: true})
     // await this.runHook('legacy', {engine: this})
 
     const getAllPluginProps = (plugin: IPlugin) => {
@@ -121,20 +117,20 @@ export default class Engine implements IEngine {
           }
         }
         if (!roots) roots = await fetch(config.pluginsModule)
-        const promises = roots.map((r: any) => this.loadPlugin(r).catch(cli.warn))
+        const promises = roots.map((r: any) => this.loadPlugin({...r, useCache: true}).catch(cli.warn))
         plugins.push(...await Promise.all(promises) as any)
       } catch (err) {
         cli.warn(err)
       }
     } else if (_.isArray(pjson.anycli.plugins)) {
-      const promises = pjson.anycli.plugins.map(p => this.loadPlugin({root: config.root, type, name: p}).catch(cli.warn))
+      const promises = pjson.anycli.plugins.map(p => this.loadPlugin({root: config.root, type, name: p, useCache: opts.useCache}).catch(cli.warn))
       plugins.push(..._(await Promise.all(promises)).compact().flatMap().value() as IPlugin[])
     }
 
     if (opts.loadDevPlugins && _.isArray(config.pjson.anycli.devPlugins)) {
       const devPlugins = config.pjson.anycli.devPlugins
       this.debug('loading dev plugins', devPlugins)
-      const promises = devPlugins.map(p => this.loadPlugin({root: config.root, type: 'dev', name: p}).catch(cli.warn))
+      const promises = devPlugins.map(p => this.loadPlugin({root: config.root, type: 'dev', name: p, useCache: opts.useCache}).catch(cli.warn))
       plugins.push(..._(await Promise.all(promises)).compact().flatMap().value() as IPlugin[])
     }
 
@@ -155,17 +151,27 @@ export default class Engine implements IEngine {
   async getPluginManifest(config: IConfig, opts: LoadPluginOptions): Promise<IPluginManifest> {
     const debug = require('debug')(['@anycli/load', config.name].join(':'))
 
-    const fetchFromDir = async (dir: string) => {
-      function findCommand(id: string): ICommand {
-        function commandPath(id: string): string {
-          return require.resolve(path.join(dir, ...id.split(':')))
-        }
-        debug('fetching %s from %s', id, dir)
-        const p = commandPath(id)
-        let c = undefault(require(p))
-        c.id = id
-        return c
+    function findCommand(dir: string, id: string): ICommand {
+      function commandPath(id: string): string {
+        return require.resolve(path.join(dir, ...id.split(':')))
       }
+      debug('fetching %s from %s', id, dir)
+      const p = commandPath(id)
+      let c = undefault(require(p))
+      c.id = id
+      return c
+    }
+
+    const rehydrate = (dir: string, commands: ICachedCommand[]): ICachedCommand[] => {
+      return commands.map((cmd: ICachedCommand): ICachedCommand => ({
+        ...cmd,
+        load: async () => findCommand(dir, cmd.id),
+      }))
+    }
+
+    const fetchFromDir = async () => {
+      const dir = config.commandsDirTS || config.commandsDir
+      if (!dir) return []
 
       const fetch = async (): Promise<ICachedCommand[]> => {
         function getCached(c: ICommand): ICachedCommand {
@@ -189,20 +195,13 @@ export default class Engine implements IEngine {
           return ids
         }
         const commands = (await fetchCommandIDs())
-          .map(id => {
-            try {
-              const cmd = findCommand(id)
-              return getCached(cmd)
-            } catch (err) { cli.warn(err) }
-          })
+        .map(id => {
+          try {
+            const cmd = findCommand(dir, id)
+            return getCached(cmd)
+          } catch (err) { cli.warn(err) }
+        })
         return _.compact(commands)
-      }
-
-      const rehydrate = (commands: ICachedCommand[]): ICachedCommand[] => {
-        return commands.map((cmd: ICachedCommand): ICachedCommand => ({
-          ...cmd,
-          load: async () => findCommand(cmd.id),
-        }))
       }
 
       let commands
@@ -234,23 +233,30 @@ export default class Engine implements IEngine {
       } else {
         commands = await fetch()
       }
-      return rehydrate(commands)
+      return rehydrate(dir, commands)
     }
 
-    let commands: ICachedCommand[] = []
-    if (config.commandsDirTS) {
+    const loadFromManifest = async () => {
       try {
-        commands.push(...await fetchFromDir(config.commandsDirTS))
+        const manifest: IPluginManifest = await fs.readJSON(path.join(config.root, '.anycli.manifest.json'))
+        if (manifest.version !== config.version) {
+          const err = new Error(`Mismatched version in plugin manifest. Expected: ${config.version} Received: ${manifest.version}`) as any
+          err.code = 'EMISMATCH'
+          throw err
+        }
+        return rehydrate(config.commandsDir!, manifest.commands)
       } catch (err) {
-        cli.warn(err)
-        // debug(err)
+        switch (err.code) {
+          case 'ENOENT': return
+          case 'EMISMATCH': return debug(err)
+          default: cli.warn(err)
+        }
       }
-    } else if (config.commandsDir) {
-      commands.push(...await fetchFromDir(config.commandsDir))
     }
+
     return {
       version: config.version,
-      commands,
+      commands: (await loadFromManifest()) || (await fetchFromDir()),
     }
   }
 }
