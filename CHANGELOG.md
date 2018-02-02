@@ -1,3 +1,11 @@
+<a name="0.2.0"></a>
+# [0.2.0](https://github.com/anycli/engine/compare/2521e8425cbdb7e6411fb88967e6f92795d8586c...v0.2.0) (2018-02-02)
+
+
+### Features
+
+* added node version check ([f19aa9c](https://github.com/anycli/engine/commit/f19aa9c))
+
 <a name="0.1.48"></a>
 ## [0.1.48](https://github.com/anycli/engine/compare/cdd8c41e134d3f02e014d2612382d28e5a210cb1...v0.1.48) (2018-02-02)
 
