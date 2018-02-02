@@ -22,9 +22,9 @@
     "semver": "^5.5.0"
   },
   "devDependencies": {
-    "@anycli/command": "^0.3.7",
-    "@anycli/config": "^0.3.0",
-    "@anycli/plugin-help": "^0.4.6",
+    "@anycli/command": "^0.3.10",
+    "@anycli/config": "^0.3.1",
+    "@anycli/plugin-help": "^0.4.7",
     "@anycli/plugin-not-found": "^0.1.14",
     "@anycli/plugin-plugins": "^0.2.8",
     "@anycli/plugin-version": "^0.1.30",
