@@ -1,3 +1,11 @@
+<a name="0.2.1"></a>
+## [0.2.1](https://github.com/anycli/engine/compare/f19aa9cea753460605790aef3567d6326437ea2d...v0.2.1) (2018-02-02)
+
+
+### Bug Fixes
+
+* dont load commands if already loaded TS commands ([38f3f73](https://github.com/anycli/engine/commit/38f3f73))
+
 <a name="0.2.0"></a>
 # [0.2.0](https://github.com/anycli/engine/compare/2521e8425cbdb7e6411fb88967e6f92795d8586c...v0.2.0) (2018-02-02)
 
