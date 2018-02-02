@@ -15,7 +15,7 @@ export function registerTSNode(debug: any, root: string) {
       // cache: false,
       // typeCheck: true,
       compilerOptions: {
-        target: 'esnext',
+        target: 'es2017',
         module: 'commonjs',
         rootDirs,
         typeRoots,
