@@ -51,7 +51,7 @@ export default class Engine implements IEngine {
         tag: opts.tag,
         type,
         config,
-        hooks: config.hooks,
+        hooks: config.hooksTS || config.hooks,
         commands: [],
         topics: [],
         plugins: [],
