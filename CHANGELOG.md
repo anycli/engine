@@ -1,3 +1,11 @@
+<a name="0.3.4"></a>
+## [0.3.4](https://github.com/anycli/engine/compare/b9d64d103ef3c8f317d0e3f556b16781291cc432...v0.3.4) (2018-02-02)
+
+
+### Bug Fixes
+
+* bumped help ([f402f4f](https://github.com/anycli/engine/commit/f402f4f))
+
 <a name="0.3.3"></a>
 ## [0.3.3](https://github.com/anycli/engine/compare/8a0ee1d60d6aa05678efec35e57037c6aeb704c5...v0.3.3) (2018-02-02)
 
