@@ -1,3 +1,12 @@
+<a name="0.1.46"></a>
+## [0.1.46](https://github.com/anycli/engine/compare/d72b2bdbdf218aeb9a43dcb9822fe9070e1dafbf...v0.1.46) (2018-02-02)
+
+
+### Bug Fixes
+
+* testing release ([94a520b](https://github.com/anycli/engine/commit/94a520b))
+* use hooksTS if available ([25450ff](https://github.com/anycli/engine/commit/25450ff))
+
 <a name="0.1.45"></a>
 ## [0.1.45](https://github.com/anycli/engine/compare/7305cda2d32e9b7d0e6107fac12e09ae9b3cc7bc...v0.1.45) (2018-02-02)
 
