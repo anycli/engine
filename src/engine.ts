@@ -252,8 +252,9 @@ export default class Engine implements IEngine {
         cli.warn(err)
         // debug(err)
       }
+    } else if (plugin.config.commandsDir) {
+      commands.push(...await fetchFromDir(plugin.config.commandsDir))
     }
-    if (plugin.config.commandsDir) commands.push(...await fetchFromDir(plugin.config.commandsDir))
     return commands
   }
 }
