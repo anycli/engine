@@ -1,3 +1,11 @@
+<a name="0.3.6"></a>
+## [0.3.6](https://github.com/anycli/engine/compare/a93726c99f962fbc6d75e039b6d5ba2d9a13418e...v0.3.6) (2018-02-02)
+
+
+### Bug Fixes
+
+* add valid flag ([0951d52](https://github.com/anycli/engine/commit/0951d52))
+
 <a name="0.3.5"></a>
 ## [0.3.5](https://github.com/anycli/engine/compare/f402f4fa40f1d639d20cad845b3b2723ce730a40...v0.3.5) (2018-02-02)
 
