@@ -1,3 +1,11 @@
+<a name="0.1.45"></a>
+## [0.1.45](https://github.com/anycli/engine/compare/7305cda2d32e9b7d0e6107fac12e09ae9b3cc7bc...v0.1.45) (2018-02-02)
+
+
+### Bug Fixes
+
+* use es2017 ([d72b2bd](https://github.com/anycli/engine/commit/d72b2bd))
+
 <a name="0.1.44"></a>
 ## [0.1.44](https://github.com/anycli/engine/compare/30cc72e9ae80a405daa3fbef6bb5ef80390de99a...v0.1.44) (2018-02-02)
 
