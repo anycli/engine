@@ -32,9 +32,9 @@
     lodash "^4.17.4"
     tslib "^1.9.0"
 
-"@anycli/config@^0.3.1":
-  version "0.3.1"
-  resolved "https://registry.npmjs.org/@anycli/config/-/config-0.3.1.tgz#3832c1da47682dd2ba0f9d46117bb5b6513196ef"
+"@anycli/config@^0.3.2":
+  version "0.3.2"
+  resolved "https://registry.npmjs.org/@anycli/config/-/config-0.3.2.tgz#61e4da1631de63d5c39ad7d2c4382785e0017b3f"
   dependencies:
     cli-ux "^3.3.13"
     debug "^3.1.0"

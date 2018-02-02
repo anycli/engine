@@ -19,6 +19,7 @@ export default class Command extends CommandBase {
     if (!cachedCommand) return this.commandNotFound(id)
     this.debug('found command', cachedCommand.id)
     const command = await cachedCommand.load()
+    command.plugin = this.engine.plugins.find(p => p.name === cachedCommand.pluginName)
     this.debug('loaded command', command.id)
     await command.run(this.argv.slice(1), {config: this.config})
   }
