@@ -1,3 +1,11 @@
+<a name="0.3.5"></a>
+## [0.3.5](https://github.com/anycli/engine/compare/f402f4fa40f1d639d20cad845b3b2723ce730a40...v0.3.5) (2018-02-02)
+
+
+### Bug Fixes
+
+* set plugin on command ([73381d0](https://github.com/anycli/engine/commit/73381d0))
+
 <a name="0.3.4"></a>
 ## [0.3.4](https://github.com/anycli/engine/compare/b9d64d103ef3c8f317d0e3f556b16781291cc432...v0.3.4) (2018-02-02)
 
