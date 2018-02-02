@@ -1,3 +1,12 @@
+<a name="0.3.2"></a>
+## [0.3.2](https://github.com/anycli/engine/compare/01d90d91f3d584030d700bcab09def5f44d70e92...v0.3.2) (2018-02-02)
+
+
+### Bug Fixes
+
+* bump deps ([7b1c5be](https://github.com/anycli/engine/commit/7b1c5be))
+* disable yarn check for now ([8a0ee1d](https://github.com/anycli/engine/commit/8a0ee1d))
+
 <a name="0.3.1"></a>
 ## [0.3.1](https://github.com/anycli/engine/compare/1e5a8ad108407c95be9077f9aa98d498b116e19e...v0.3.1) (2018-02-02)
 
