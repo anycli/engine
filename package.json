@@ -1,7 +1,7 @@
 {
   "name": "@anycli/engine",
   "description": "main anycli component",
-  "version": "0.3.2",
+  "version": "0.3.3",
   "author": "Jeff Dickey @jdxcode",
   "anycli": {
     "devPlugins": [
