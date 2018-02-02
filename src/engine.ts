@@ -1,5 +1,5 @@
 import {convertToCached} from '@anycli/command'
-import {ICachedCommand, ICommand, IConfig, IEngine, IPlugin, ITopic, read} from '@anycli/config'
+import {ICachedCommand, ICommand, IConfig, IEngine, IPlugin, IPluginManifest, ITopic, LoadPluginOptions, read} from '@anycli/config'
 import cli from 'cli-ux'
 import * as fs from 'fs-extra'
 import * as globby from 'globby'
@@ -12,7 +12,7 @@ import {undefault} from './util'
 
 export default class Engine implements IEngine {
   public config!: IConfig
-  private _plugins!: IPlugin[]
+  private readonly _plugins: IPlugin[] = []
   private readonly _commands: ICachedCommand[] = []
   private readonly _topics: ITopic[] = []
   private readonly _hooks: {[k: string]: string[]} = {}
@@ -36,95 +36,32 @@ export default class Engine implements IEngine {
 
     this.debug = require('debug')(['@anycli/engine', this.config.name].join(':'))
 
-    const loadPlugin = async (opts: {root: string, type: string, config?: IConfig, name?: string, tag?: string, loadDevPlugins?: boolean}) => {
-      this.debug('loading plugin', opts.name || opts.root)
-      const config = opts.config || await read(opts)
-      const pjson = config.pjson
-      const name = pjson.name
-      const version = pjson.version
-      const type = opts.type || 'core'
+    this.rootPlugin = await this.loadPlugin({type: 'core', config, loadDevPlugins: true})
+    // await this.runHook('legacy', {engine: this})
 
-      const plugin: IPlugin = {
-        name,
-        version,
-        root: config.root,
-        tag: opts.tag,
-        type,
-        config,
-        hooks: config.hooksTS || config.hooks,
-        commands: [],
-        topics: [],
-        plugins: [],
-      }
+    const getAllPluginProps = (plugin: IPlugin) => {
+      this.plugins.push(plugin)
 
-      if (config.pluginsModuleTS || config.hooksTS || config.commandsDirTS) {
-        registerTSNode(this.debug, config.root)
-      }
-
-      if (opts.loadDevPlugins && _.isArray(config.pjson.anycli.devPlugins)) {
-        const devPlugins = config.pjson.anycli.devPlugins
-        this.debug('loading dev plugins', devPlugins)
-        const promises = devPlugins.map(p => loadPlugin({root: config.root, type: 'dev', name: p}).catch(cli.warn))
-        plugin.plugins.push(..._(await Promise.all(promises)).compact().flatMap().value() as IPlugin[])
-      }
-
-      if (config.pluginsModule) {
-        try {
-          let roots
-          let fetch = (d: string) => undefault(require(d))(this.config)
-          if (config.pluginsModuleTS) {
-            try {
-              roots = await fetch(config.pluginsModuleTS)
-            } catch (err) {
-              cli.warn(err)
-            }
-          }
-          if (!roots) roots = await fetch(config.pluginsModule)
-          const promises = roots.map((r: any) => loadPlugin(r).catch(cli.warn))
-          plugin.plugins.push(...await Promise.all(promises) as any)
-        } catch (err) {
-          cli.warn(err)
-        }
-      }
-      if (_.isArray(pjson.anycli.plugins)) {
-        const promises = pjson.anycli.plugins.map(p => loadPlugin({root: config.root, type, name: p}).catch(cli.warn))
-        plugin.plugins.push(..._(await Promise.all(promises)).compact().flatMap().value() as IPlugin[])
-      }
-
-      return plugin
-    }
-    this.rootPlugin = await loadPlugin({type: 'core', root: config.root, loadDevPlugins: true})
-
-    function getAllPlugins(plugin: IPlugin): IPlugin[] {
-      let plugins = [plugin]
-      for (let p of plugin.plugins || []) {
-        plugins.push(...getAllPlugins(p))
-      }
-      return plugins
-    }
-    this._plugins = getAllPlugins(this.rootPlugin)
-
-    await this.runHook('legacy', {engine: this})
-
-    // add hooks and topics
-    for (let p of this._plugins) {
-      for (let [hook, hooks] of Object.entries(p.hooks)) {
+      for (let [hook, hooks] of Object.entries(plugin.hooks)) {
         this._hooks[hook] = [...this._hooks[hook] || [], ...hooks]
       }
-      this._topics.push(...p.topics)
-    }
 
-    this._commands.push(..._(
-      await Promise.all(this.plugins.map(p => this.getPluginCommands(p, true)))
-    ).flatMap().value())
+      this.topics.push(...plugin.topics)
+      this.commands.push(...plugin.manifest.commands)
 
-    // add missing topics from commands
-    for (let c of this._commands) {
-      let name = c.id!.split(':').slice(0, -1).join(':')
-      if (!this.topics.find(t => t.name === name)) {
-        this.topics.push({name})
+      // // add missing topics from commands
+      // for (let c of this._commands) {
+      //   let name = c.id!.split(':').slice(0, -1).join(':')
+      //   if (!this.topics.find(t => t.name === name)) {
+      //     this.topics.push({name})
+      //   }
+      // }
+
+      for (let p of plugin.plugins || []) {
+        getAllPluginProps(p)
       }
     }
+    getAllPluginProps(this.rootPlugin)
   }
 
   findCommand(id: string, must: true): ICachedCommand
@@ -159,33 +96,64 @@ export default class Engine implements IEngine {
     this.debug('finished hook', event)
   }
 
-  async getPluginCommands(plugin: IPlugin, useCache = false): Promise<ICachedCommand[]> {
-    function getCached(c: ICommand): ICachedCommand {
-      const opts = {plugin}
-      if (c.convertToCached) return c.convertToCached(opts)
-      return convertToCached(c, opts)
+  async loadPlugin(opts: LoadPluginOptions): Promise<IPlugin> {
+    const config = opts.config || await read(opts)
+    this.debug('loading plugin', config.name)
+    const pjson = config.pjson
+    const name = pjson.name
+    const version = pjson.version
+    const type = opts.type
+
+    if (config.pluginsModuleTS || config.hooksTS || config.commandsDirTS) {
+      registerTSNode(this.debug, config.root)
     }
 
-    const getLastUpdated = async (): Promise<Date | undefined> => {
+    let plugins = []
+    if (config.pluginsModule) {
       try {
-        // if (!await fs.pathExists(path.join(plugin.root, '.git'))) return
-        let files = await globby([`${plugin.root}/+(src|lib)/**/*.+(js|ts)`, '!**/*.+(d.ts|test.ts|test.js)'])
-        let stats = await Promise.all(files.map(async f => {
-          const stat = await fs.stat(f)
-          return [f, stat] as [string, fs.Stats]
-        }))
-        const max = _.maxBy(stats, '[1].mtime')
-        if (!max) return new Date()
-        this.debug('most recently updated file: %s %o', max[0], max[1].mtime)
-        return max[1].mtime
+        let roots
+        let fetch = (d: string) => undefault(require(d))(this.config)
+        if (config.pluginsModuleTS) {
+          try {
+            roots = await fetch(config.pluginsModuleTS)
+          } catch (err) {
+            cli.warn(err)
+          }
+        }
+        if (!roots) roots = await fetch(config.pluginsModule)
+        const promises = roots.map((r: any) => this.loadPlugin(r).catch(cli.warn))
+        plugins.push(...await Promise.all(promises) as any)
       } catch (err) {
         cli.warn(err)
-        return new Date()
       }
+    } else if (_.isArray(pjson.anycli.plugins)) {
+      const promises = pjson.anycli.plugins.map(p => this.loadPlugin({root: config.root, type, name: p}).catch(cli.warn))
+      plugins.push(..._(await Promise.all(promises)).compact().flatMap().value() as IPlugin[])
     }
-    const lastUpdated = await getLastUpdated()
 
-    const debug = require('debug')(['@anycli/load', plugin.name].join(':'))
+    if (opts.loadDevPlugins && _.isArray(config.pjson.anycli.devPlugins)) {
+      const devPlugins = config.pjson.anycli.devPlugins
+      this.debug('loading dev plugins', devPlugins)
+      const promises = devPlugins.map(p => this.loadPlugin({root: config.root, type: 'dev', name: p}).catch(cli.warn))
+      plugins.push(..._(await Promise.all(promises)).compact().flatMap().value() as IPlugin[])
+    }
+
+    return {
+      name,
+      version,
+      root: config.root,
+      tag: opts.tag,
+      type,
+      config,
+      hooks: config.hooksTS || config.hooks,
+      topics: [],
+      plugins,
+      manifest: await this.getPluginManifest(config, opts),
+    }
+  }
+
+  async getPluginManifest(config: IConfig, opts: LoadPluginOptions): Promise<IPluginManifest> {
+    const debug = require('debug')(['@anycli/load', config.name].join(':'))
 
     const fetchFromDir = async (dir: string) => {
       function findCommand(id: string): ICommand {
@@ -200,6 +168,12 @@ export default class Engine implements IEngine {
       }
 
       const fetch = async (): Promise<ICachedCommand[]> => {
+        function getCached(c: ICommand): ICachedCommand {
+          const opts = {pluginName: config.name}
+          if (c.convertToCached) return c.convertToCached(opts)
+          return convertToCached(c, opts)
+        }
+
         const fetchCommandIDs = async (): Promise<string[]> => {
           function idFromPath(file: string) {
             const p = path.parse(file)
@@ -232,11 +206,30 @@ export default class Engine implements IEngine {
       }
 
       let commands
-      if (useCache) {
-        const cacheFile = path.join(this.config.cacheDir, 'commands', plugin.type, `${plugin.name}.json`)
-        let cacheKey = [this.config.version, plugin.version]
+      if (opts.useCache) {
+        const getLastUpdated = async (): Promise<Date | undefined> => {
+          try {
+            // if (!await fs.pathExists(path.join(plugin.root, '.git'))) return
+            let files = await globby([`${config.root}/+(src|lib)/**/*.+(js|ts)`, '!**/*.+(d.ts|test.ts|test.js)'])
+            let stats = await Promise.all(files.map(async f => {
+              const stat = await fs.stat(f)
+              return [f, stat] as [string, fs.Stats]
+            }))
+            const max = _.maxBy(stats, '[1].mtime')
+            if (!max) return new Date()
+            this.debug('most recently updated file: %s %o', max[0], max[1].mtime)
+            return max[1].mtime
+          } catch (err) {
+            cli.warn(err)
+            return new Date()
+          }
+        }
+
+        const cacheFile = path.join(this.config.cacheDir, 'commands', opts.type, `${config.name}.json`)
+        let cacheKey = [this.config.version, config.version]
+        const lastUpdated = await getLastUpdated()
         if (lastUpdated) cacheKey.push(lastUpdated.toISOString())
-        const cache = new Cache<ICachedCommand[]>(cacheFile, cacheKey.join(':'), plugin.name)
+        const cache = new Cache<ICachedCommand[]>(cacheFile, cacheKey.join(':'), config.name)
         commands = await cache.fetch('commands', fetch)
       } else {
         commands = await fetch()
@@ -245,16 +238,19 @@ export default class Engine implements IEngine {
     }
 
     let commands: ICachedCommand[] = []
-    if (plugin.config.commandsDirTS) {
+    if (config.commandsDirTS) {
       try {
-        commands.push(...await fetchFromDir(plugin.config.commandsDirTS))
+        commands.push(...await fetchFromDir(config.commandsDirTS))
       } catch (err) {
         cli.warn(err)
         // debug(err)
       }
-    } else if (plugin.config.commandsDir) {
-      commands.push(...await fetchFromDir(plugin.config.commandsDir))
+    } else if (config.commandsDir) {
+      commands.push(...await fetchFromDir(config.commandsDir))
     }
-    return commands
+    return {
+      version: config.version,
+      commands,
+    }
   }
 }
