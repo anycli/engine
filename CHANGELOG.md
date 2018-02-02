@@ -1,3 +1,11 @@
+<a name="0.1.43"></a>
+## [0.1.43](https://github.com/anycli/engine/compare/e8aa165ac3e11f39f3b192d0c35b41a0309b5538...v0.1.43) (2018-02-02)
+
+
+### Bug Fixes
+
+* simplify caching ([30cc72e](https://github.com/anycli/engine/commit/30cc72e))
+
 <a name="0.1.42"></a>
 ## [0.1.42](https://github.com/anycli/engine/compare/05069b34e7517d98499880cab3a9124586cbcb93...v0.1.42) (2018-02-01)
 
