@@ -1,3 +1,11 @@
+<a name="0.1.47"></a>
+## [0.1.47](https://github.com/anycli/engine/compare/94a520bb103d606c2b9a6ad4d9f0ac8b6e4bec07...v0.1.47) (2018-02-02)
+
+
+### Bug Fixes
+
+* use new plugin names ([cdd8c41](https://github.com/anycli/engine/commit/cdd8c41))
+
 <a name="0.1.46"></a>
 ## [0.1.46](https://github.com/anycli/engine/compare/d72b2bdbdf218aeb9a43dcb9822fe9070e1dafbf...v0.1.46) (2018-02-02)
 
