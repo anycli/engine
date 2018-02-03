@@ -32,12 +32,15 @@
     lodash "^4.17.4"
     tslib "^1.9.0"
 
-"@anycli/config@^0.3.3":
-  version "0.3.3"
-  resolved "https://registry.npmjs.org/@anycli/config/-/config-0.3.3.tgz#6a497fe7f70e6ba9199b399a20b143df25a22558"
+"@anycli/config@^1.0.17":
+  version "1.0.17"
+  resolved "https://registry.yarnpkg.com/@anycli/config/-/config-1.0.17.tgz#b8452ac8d584d3c6b32b62be663d81d3a409149d"
   dependencies:
+    cli-ux "^3.3.13"
     debug "^3.1.0"
     fs-extra "^5.0.0"
+    fs-extra-debug "^1.0.4"
+    globby "^7.1.1"
     load-json-file "^4.0.0"
     lodash "^4.17.4"
     read-pkg "^3.0.0"
