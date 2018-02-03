@@ -2,16 +2,6 @@
 # yarn lockfile v1
 
 
-"@anycli/command@^0.3.10":
-  version "0.3.10"
-  resolved "https://registry.npmjs.org/@anycli/command/-/command-0.3.10.tgz#bf0707628fb93066f0f043c76d9073411458d1e8"
-  dependencies:
-    "@anycli/parser" "^3.0.4"
-    cli-ux "^3.3.13"
-    debug "^3.1.0"
-    lodash "^4.17.4"
-    tslib "^1.9.0"
-
 "@anycli/command@^0.3.7":
   version "0.3.7"
   resolved "https://registry.yarnpkg.com/@anycli/command/-/command-0.3.7.tgz#293c366ed8227fcdc675e278a46d8f93435526a5"
@@ -29,6 +19,18 @@
     "@anycli/parser" "^3.0.4"
     cli-ux "^3.3.13"
     debug "^3.1.0"
+    lodash "^4.17.4"
+    tslib "^1.9.0"
+
+"@anycli/command@^1.1.1":
+  version "1.1.1"
+  resolved "https://registry.yarnpkg.com/@anycli/command/-/command-1.1.1.tgz#56e019315736ce5ca38791416f34ff4d8bac08d3"
+  dependencies:
+    "@anycli/parser" "^3.2.0"
+    cli-ux "^3.3.13"
+    debug "^3.1.0"
+    fs-extra "^5.0.0"
+    load-json-file "^4.0.0"
     lodash "^4.17.4"
     tslib "^1.9.0"
 
@@ -67,6 +69,14 @@
 "@anycli/parser@^3.0.4":
   version "3.0.4"
   resolved "https://registry.yarnpkg.com/@anycli/parser/-/parser-3.0.4.tgz#8714c4f73134625fe3781b9e2b5aa0ebb5685a82"
+  dependencies:
+    "@anycli/screen" "^0.0.3"
+    chalk "^2.3.0"
+    lodash "^4.17.4"
+
+"@anycli/parser@^3.2.0":
+  version "3.2.0"
+  resolved "https://registry.yarnpkg.com/@anycli/parser/-/parser-3.2.0.tgz#d50bfa1bedb395a83f4e3fb6b61bb0287d069b64"
   dependencies:
     "@anycli/screen" "^0.0.3"
     chalk "^2.3.0"
